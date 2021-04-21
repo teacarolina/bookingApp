@@ -1,9 +1,13 @@
 import React from "react";
 
-function Card() {
+                //props
+function Card({productName, price}) {
     return(
         <div>
-            card
+            =====================
+            <div>{productName}</div>
+            <div>{price}</div>
+            =====================
         </div>
     )
 }

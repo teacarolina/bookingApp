@@ -1,7 +1,8 @@
 import React from "react";
 import Card from "./Card";
 
-//den här datan ska komma från databas eller APIes
+//den här datan ska komma från databas eller APIes, men brukar komma i det här formatet
+//en array av objects
 const arrayofProductObject = [
     {productName:"Headphones1", price:"1800"},
     {productName:"Headphones2", price:"999"},
@@ -10,7 +11,7 @@ const arrayofProductObject = [
     ]
 
 function CardList() {
-
+//för att kunna skriva JS kod måste vi skriva det inom {}
     return(
         <div>
             Flera Card

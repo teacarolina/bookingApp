@@ -4,6 +4,7 @@ import Form from "./Form";
 import Menu from "./Menu";
 import Test from "./Test";
 import Fransar from "./Fransar";
+import Home from "./Home";
 
 //React-router-DOM
 import {Route, BrowserRouter as Router} from "react-router-dom";
@@ -20,8 +21,9 @@ export default function AppRoute() {
                 varför skriver vi exakt, när den matchar exakt med den här path så visas Card  
                 
                 <Route path="/" exact component={CardList} />*/}
-               
-                <Route path="/" exact component={Fransar} />
+
+                <Route path="/" exact component={Home} />
+                <Route path="/behandlingar" component={Fransar} />
                 <Route path="/form" component={Form} />
                 <Route path="/test" component={Test} />
             </Router>

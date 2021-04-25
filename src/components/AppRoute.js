@@ -1,10 +1,9 @@
 import React from "react";
-import CardList from "./CardList";
-import Form from "./Form";
-import Menu from "./Menu";
-import Test from "./Test";
-import Fransar from "./Fransar";
-import Home from "./Home";
+import BookingForm from "./BookingForm";
+import Navbar from "./Navbar";
+import Booking from "./Booking";
+import Treatment from "./Treatment";
+import Landingpage from "./Home";
 
 //React-router-DOM
 import {Route, BrowserRouter as Router} from "react-router-dom";
@@ -15,17 +14,15 @@ export default function AppRoute() {
         <>
             <Router>
 
-                <Menu/>
+                <Navbar/>
 
-                {/* När användare kommer in på hemsidan använder vi card
-                varför skriver vi exakt, när den matchar exakt med den här path så visas Card  
-                
-                <Route path="/" exact component={CardList} />*/}
+                {/* vi skriver exact component för när den matchar exakt med den här path så 
+                visas Landingpage */}
 
-                <Route path="/" exact component={Home} />
-                <Route path="/behandlingar" component={Fransar} />
-                <Route path="/form" component={Form} />
-                <Route path="/test" component={Test} />
+                <Route path="/" exact component={Landingpage} />
+                <Route path="/behandlingar" component={Treatment} />
+                <Route path="/form" component={BookingForm} />
+                <Route path="/bokningar" component={Booking} />
             </Router>
         </>
     )

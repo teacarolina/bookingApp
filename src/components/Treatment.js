@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Fransar() {
+function Treatment() {
     return (
         <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -32,4 +32,4 @@ function Fransar() {
     )
 }
 
-export default Fransar
+export default Treatment;

@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-
+/*             glöm ej ta bort om du inte använder state 
 const isAdmin=true;
-
-function Form() {
-
+ */
+function BookingForm() {
+/* 
     const initialValues = {
         productName:" ",
         price:" "
@@ -18,7 +18,7 @@ function Form() {
 
     function onHandleChange() {
         //fixa detta
-    }
+    } */
 
  //   <>
    // {isAdmin ?
@@ -75,4 +75,4 @@ function Form() {
     )
 }
 
-export default Form
+export default BookingForm;

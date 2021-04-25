@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-function Menu() {
+function Navbar() {
     return (
         <nav class="bg-pink-100">
           <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -33,7 +33,7 @@ function Menu() {
                     <Link to="/" className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Startsida</Link>
                     <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Behandlingar</Link>
                     <Link to="/form" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Gör bokning</Link>
-                    <Link to="/test" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
+                    <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
                   </div>
                 </div>
               </div>
@@ -56,4 +56,4 @@ function Menu() {
     )
 }
 
-export default Menu
+export default Navbar;

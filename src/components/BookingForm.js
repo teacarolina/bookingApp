@@ -1,40 +1,6 @@
-import React, {useState} from "react";
-/*             glöm ej ta bort om du inte använder state 
-const isAdmin=true;
- */
+import React from "react";
+
 function BookingForm() {
-/* 
-    const initialValues = {
-        productName:" ",
-        price:" "
-    }
-
-        //rendera          //sätta          //default value
-    const [formValues, setFormValues] = useState(initialValues) 
-
-    function onHandleSubmit() {
-        //fixa detta
-    }
-
-    function onHandleChange() {
-        //fixa detta
-    } */
-
- //   <>
-   // {isAdmin ?
-     //   <form onSubmit={onHandleSubmit}>
-       //     <label for="productName">Product Name:</label>
-         //   <input className="border" value={formValues.productName} name="productName" onChange={onHandleChange}/>
-           // <label for="productName">Product Price:</label>
-         //   <input className="border" type="number" name="price" value={formValues.price} onChange={onHandleChange}/>
-
-{/* exempel hur man använder tailwind button className="bg-purple-600" */}
-           // <button>Lägg till</button>
-       // </form>
-
-   // : <div>Du har inte behörighet att se det här</div>}
-    //</>
-
     return(
         <>
         <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

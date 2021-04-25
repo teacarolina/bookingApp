@@ -7,7 +7,8 @@ function Treatment() {
           <div class="sm:flex sm:items-start">
            
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <img class="h-13 w-am" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
+            <img class="h-13 w-am hidden lg:block" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
+            <img class="h-13 w-40 block lg:hidden" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
 
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
                 Thumbnail label

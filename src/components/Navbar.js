@@ -49,7 +49,7 @@ function Navbar() {
                 <Link to="/" className="bg-gray-900 text-pink-100 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Startsida</Link>
                 <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
                 <Link to="/form" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Gör bokning</Link>
-                <Link to="/test" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
+                <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
             </div>
           </div>
         </nav>

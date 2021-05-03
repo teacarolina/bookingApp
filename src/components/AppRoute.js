@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import Booking from "./Booking";
 import Treatment from "./Treatment";
 import Landingpage from "./Home";
+import Login from "./Login";
+import Register from "./Register";
 
 //React-router-DOM
 import {Route, BrowserRouter as Router} from "react-router-dom";
@@ -23,6 +25,9 @@ export default function AppRoute() {
                 <Route path="/behandlingar" component={Treatment} />
                 <Route path="/form" component={BookingForm} />
                 <Route path="/bokningar" component={Booking} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                
             </Router>
         </>
     )

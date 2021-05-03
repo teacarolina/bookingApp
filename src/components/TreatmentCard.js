@@ -1,48 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import axios from "axios";
-import Header from "./Header";
-import Footer from "./Footer";
-import TreatmentCard from "./TreatmentCard";
+import React from 'react';
 
-function Treatment() {
-
-    const [treatments, setTreatments] = useState([]);
-    
-    useEffect(()=> {
-      const fetchTreatments = async()=> {
-        const response =   await axios.get("http://localhost:1337/products")
-        console.log(response)
-        setTreatments(response.data)
-      }
-
-      fetchTreatments()
-    }, [])
-
+function TreatmentCard({name, price, description, image}) {
     return (
-      <>
-      
-      <Header/>
-
-      {treatments.map((product)=>{
-        return(
-          <TreatmentCard key={product.id} image={product.img} name={product.name} price={product.price} description={product.description}/>
-        )
-      })}
-
-     {/*    <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
+        <>
+        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
            
             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <img className="h-13 w-am hidden lg:block" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
+            {/*<img className="h-13 w-am hidden lg:block" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
             <img className="h-13 w-40 block lg:hidden" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
-
+    <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
+     */}
+     <div>
+        <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
+        </div>
               <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                Thumbnail label
+                {name}
               </h3>
               <div className="mt-2">
                 <p className="text-sm text-gray-500">
-                    Beskrivning
+                    {description}
                 </p>
               </div>
             </div>
@@ -53,14 +31,12 @@ function Treatment() {
             Boka
           </button>
           <div type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-            2000sek
+            {price}
           </div>
         </div>
-    </div> */}
-
-      <Footer/>
-    </>
+    </div>  
+        </>
     )
 }
 
-export default Treatment;
+export default TreatmentCard

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -13,8 +13,17 @@ function Login() {
 
     const [loginValues, setLoginValues] = useState(initalValues);
     const [error, setError] = useState("");
-    const [auth, setAuth] = useState(false);
-    //const [username, setUsername] = ("");
+    //const [auth, setAuth] = useState(false);
+    //används ifall vi vill sätta en auth 
+    //const [username, setUsername] = useState(initalValues);
+    //använd det här för att skriva ut användarnamnet
+    const [jwt, setJwt] = useState("");
+    const history = useHistory();
+
+    useEffect(() => {
+      const JWT = localStorage.getItem("jwt");
+      setJwt(JWT)
+    }, [])
 
     function onHandleSubmit(e) {
       e.preventDefault();
@@ -29,8 +38,14 @@ function Login() {
       console.log("User data", response.data);
 
       //setUsername(response.data.user.username);
-      setAuth(true);
+      //använd det här för att skriva ut användarnamnet
+
+      //setAuth(true);
+      //används ifall vi vill sätta en auth 
       //ändra state som kommer att rendera någon component vid inloggning
+
+      localStorage.setItem("jwt", response.data.jwt)
+      history.push("/")
     }).catch((err)=>{
       console.log(err);
       //if user is not registered it needs to show that they need to be registered
@@ -41,12 +56,14 @@ function Login() {
 
     function onHandleChange(e) {
       setLoginValues({...loginValues, [e.target.name]:e.target.value});
+      //setUsername({...username, [e.target.name]:e.target.value});
+      //använd det här för att skriva ut användarnamnet
     }
 
     return (
         <>
                  <Header/>
-{auth ? (<h1>Välkommen</h1>) : 
+{/*auth ? (<h1>Välkommen {username}</h1>) : */}
 <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div className="max-w-md w-full space-y-8">
     <div>
@@ -79,7 +96,6 @@ function Login() {
     </form>
   </div>
 </div>
-}
 <Footer/>  
         </>
     )

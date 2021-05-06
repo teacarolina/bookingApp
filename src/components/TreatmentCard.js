@@ -13,8 +13,8 @@ function TreatmentCard({name, price, description, image}) {
     <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
      */}
      <div>
-        <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
-        </div>
+{/*         <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
+ */}        </div>
               <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
                 {name}
               </h3>

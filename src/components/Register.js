@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 //useEffect?
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -14,9 +14,10 @@ function Register() {
     }
 
     const [registerValues, setRegisterValues] = useState(initialValues);
-    //const [username, setUsername] = useState("");
-    const [registerComplete, setRegisterComplete] = useState(false);
+    //const [username, setUsername] = useState(initialValues);
+    //const [registerComplete, setRegisterComplete] = useState(false);
     const [error, setError] = useState("");
+    const history = useHistory();
 
     function onHandleSubmit(e) {
       e.preventDefault();
@@ -24,7 +25,11 @@ function Register() {
       username: registerValues.username,
       email: registerValues.email,
       password: registerValues.password,
-      }).then ( (e)=> {if(e.data.user) setRegisterComplete(true)}).catch((err)=> {
+
+      }).then ( (e)=> {if(e.data.user) 
+        history.push("/login")
+        //setRegisterComplete(true)
+      }).catch((err)=> {
         setError(err.response.data.message[0].messages[0].message)
       })
 
@@ -32,12 +37,13 @@ function Register() {
 
     function onHandleChange(e) {
       setRegisterValues({...registerValues, [e.target.name]:e.target.value})
+      //setUsername({...username, [e.target.name]:e.target.value})
     }
 
     return (
         <>
                  <Header/>
-{registerComplete ? (<h1>Du har nu ett konto och kan logga in</h1>) : 
+{/*registerComplete ? (<h1>Du har nu ett konto och kan logga in</h1>) : */}
 <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div className="max-w-md w-full space-y-8">
     <div>
@@ -73,7 +79,7 @@ function Register() {
     </form>
   </div>
 </div>
-}
+
 <Footer/>  
         </>
     )

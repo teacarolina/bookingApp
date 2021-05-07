@@ -9,9 +9,10 @@ function Treatment() {
     const [treatments, setTreatments] = useState([]);
     
     useEffect(()=> {
-      const fetchTreatments = async()=> {
-        const response =   await axios.get("http://localhost:1337/products")
+        const fetchTreatments = async()=> {
+        const response = await axios.get("http://localhost:1337/products")
         console.log(response)
+        console.log(response.data[0].img.formats.small.url)
         setTreatments(response.data)
       }
 

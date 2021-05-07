@@ -12,6 +12,7 @@ function TreatmentCard({name, price, description, image}) {
             <img className="h-13 w-40 block lg:hidden" src="https://cdn.pixabay.com/photo/2017/08/07/14/40/portrait-2604539_1280.jpg" alt="Workflow"/>
     <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
      */}
+    
      <div>
 {/*         <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
  */}        </div>

@@ -46,10 +46,13 @@ function Login() {
 
       localStorage.setItem("jwt", response.data.jwt)
       history.push("/")
+      window.location.reload()
+      //tillfällig lösning på att sidan behöver reloadas
     }).catch((err)=>{
       console.log(err);
       //if user is not registered it needs to show that they need to be registered
-      setError("Fel inloggningsuppgifter")
+      //setError("Fel inloggningsuppgifter")
+      setError(err.response.data.message[0].messages[0].message)
       //setError(err.response.message[0].messages[0].message)
     })
   }

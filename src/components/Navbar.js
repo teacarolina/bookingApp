@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useHistory} from "react-router-dom";
 
-//page needs reload?
+//page needs reload? 
 function Navbar() {
 
   const JWT = localStorage.getItem("jwt");
@@ -12,8 +12,9 @@ function Navbar() {
     e.preventDefault()
     window.localStorage.removeItem("jwt")
     history.push("/login")
+    window.location.reload()
+    //tillfällig lösning på att sidan behöver reloadas
   }
-  //window.localStorage.removeItem("jwt")
 
     return (
       <>
@@ -53,7 +54,7 @@ function Navbar() {
               </div>
               
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <Link onClick={logout} className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Logga ut</Link>
+              <button onClick={logout} className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Logga ut</button>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ function Treatment() {
         console.log(response)
         console.log(response.data[0].img.formats.small.url)
         setTreatments(response.data)
+        console.log(response.data)
       }
 
       fetchTreatments()

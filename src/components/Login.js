@@ -17,7 +17,10 @@ function Login() {
     //används ifall vi vill sätta en auth 
     //const [username, setUsername] = useState(initalValues);
     //använd det här för att skriva ut användarnamnet
+    
     const [jwt, setJwt] = useState("");
+    //warning: 'jwt' is assigned a value but never used  no-unused-vars
+
     const history = useHistory();
 
     useEffect(() => {

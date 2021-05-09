@@ -1,8 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from "axios";
+import {useHistory} from "react-router-dom"
 
 function BookingForm() {
+    
+    const history = useHistory()
+
+    const initalValues = {
+      name: "",
+      date: "",
+      telephone: 0
+    }
+
+    const [newBooking, setNewBooking] = useState(initalValues)
+
+    function onHandleChange(e) {
+      setNewBooking({...newBooking, [e.target.name]:e.target.value})
+    }
+
+    function onHandleSubmit(e) {
+      e.preventDefault()
+      axios.post("http://localhost:1337/bookings", {
+        name: newBooking.name,
+        date: newBooking.date,
+        telephone: newBooking.telephone
+      }).then( (res)=> history.push("/bokningar"))
+    }
+
     return(
         <>
         <Header/>
@@ -15,17 +41,17 @@ function BookingForm() {
               Gör din bokning
               </h2>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="mt-8 space-y-6" onSubmit={onHandleSubmit} method="POST">
               <input type="hidden" name="remember" value="true"/>
               <div className="rounded-md shadow-sm -space-y-px">
                 <div>
-                  <input id="name" name="name" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ditt namn"/>
+                  <input id="name" name="name" type="text" value={newBooking.name} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ditt namn"/>
                 </div>
                 <div>
-                  <input id="date" name="date" type="date" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Telefonnummer"/>
+                  <input id="date" name="date" type="datetime-local" value={newBooking.date} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Telefonnummer"/>
                 </div>
                 <div>
-                  <input id="telephone" name="telephone" type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Telefonnummer"/>
+                  <input id="telephone" name="telephone" type="text" value={newBooking.telephone} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Telefonnummer"/>
                 </div>
               </div>
               <div>

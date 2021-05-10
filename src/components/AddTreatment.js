@@ -9,14 +9,19 @@ function AddTreatment() {
     const initialValues = {
         name:"",
         description:"",
-        price:0
+        price:null
     }
 
     const [treatment, setTreatment] = useState(initialValues)
+    const [fileData, setFileData] = useState()
     const history = useHistory()
 
     function onHandleChange(e) {
         setTreatment({...treatment, [e.target.name]:e.target.value})
+    }
+
+    function onHandleChangeImg(e) {
+      setFileData(e.target.files[0])
     }
 
     function onHandleSubmit(e) {
@@ -25,7 +30,15 @@ function AddTreatment() {
         name:treatment.name,
         description:treatment.description,
         price: treatment.price
-    }).then( (res)=> history.push("/behandlingar")) }
+    }).then( (res)=> {
+      const data = new FormData()
+      data.append("files", fileData)
+      data.append("ref", "product")
+      data.append("field", "img")
+      data.append("refId", res.data.id)
+      axios.post("http://localhost:1337/upload", data)
+    }).then(history.push("/")) 
+    }
 
     return (
         <>
@@ -50,6 +63,9 @@ function AddTreatment() {
                 </div>
                 <div>
                   <input id="price" name="price" type="number" value={treatment.price} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Pris"/>
+                </div>
+                <div>
+                <input id="file" name="file" type="file" onChange={onHandleChangeImg} required className="appearance-none rounded-none relative block w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Bild"/>
                 </div>
               </div>
               <div>

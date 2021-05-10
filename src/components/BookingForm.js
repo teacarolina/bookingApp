@@ -4,6 +4,9 @@ import Footer from "./Footer";
 import axios from "axios";
 import {useHistory} from "react-router-dom"
 
+
+//använder inte just nu utan ligger under card som modal, lägg till functions där
+
 function BookingForm() {
     
     const history = useHistory()

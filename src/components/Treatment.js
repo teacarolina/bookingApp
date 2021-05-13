@@ -7,18 +7,28 @@ import TreatmentCard from "./TreatmentCard";
 function Treatment() {
 
     const [treatments, setTreatments] = useState([]);
+    const [loadPage, setLoadPage] = useState(2)
     
     useEffect(()=> {
         const fetchTreatments = async()=> {
-        const response = await axios.get("http://localhost:1337/products")
+        const response = await axios.get(`http://localhost:1337/products?_limit=${loadPage}`)
         console.log(response)
-        console.log(response.data[0].img.formats.small.url)
+        //console.log(response.data[0].img.formats.small.url)
         setTreatments(response.data)
-        console.log(response.data)
+        //console.log(response.data)
       }
 
       fetchTreatments()
-    }, [])
+    }, [loadPage])
+
+    function loadMore() {
+      let dynamicPage = loadPage+2
+      setLoadPage(dynamicPage)
+    }
+
+    function showLess() {
+      setLoadPage(2)
+    }
 
     return (
       <>
@@ -30,6 +40,12 @@ function Treatment() {
           <TreatmentCard key={product.id} image={product.img} name={product.name} price={product.price} description={product.description}/>
         )
       })}
+          <br/>
+      { (treatments.length > loadPage || treatments.length === loadPage) ? 
+      <button onClick={loadMore} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+        Load More</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          Show Less</button>}
+          <br/><br/>
 
      {/*    <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">

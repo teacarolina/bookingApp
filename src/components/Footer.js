@@ -1,5 +1,6 @@
 import React from 'react'
 
+//vägbeskrivning 
 function Footer() {
     return (
         

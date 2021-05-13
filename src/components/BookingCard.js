@@ -1,5 +1,6 @@
 import React from 'react'
 
+//mitt konto??? 
 function BookingCard({name, date, telephone}) {
     return (
         <>

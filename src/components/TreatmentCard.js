@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 
+//ändra färg på knappar
+
 const customStyles = {
   content : {
     top                   : '50%',

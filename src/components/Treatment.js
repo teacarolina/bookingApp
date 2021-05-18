@@ -8,6 +8,8 @@ function Treatment() {
 
     const [treatments, setTreatments] = useState([]);
     const [loadPage, setLoadPage] = useState(2)
+    const [loadButton, setLoadButton] = useState("Load More")
+    const [allTreatments, setAllTreatments] = useState([])
     
     useEffect(()=> {
         const fetchTreatments = async()=> {
@@ -21,13 +23,31 @@ function Treatment() {
       fetchTreatments()
     }, [loadPage])
 
+    useEffect(()=> {
+      const fetchAllTreatments = async()=> {
+      const responseAll = await axios.get(`http://localhost:1337/products`)
+      console.log(responseAll)
+      //console.log(responseAll.data[0].img.formats.small.url)
+      setAllTreatments(responseAll.data)
+      console.log("testing", responseAll.data)
+    }
+
+    fetchAllTreatments()
+  }, [])
+
     function loadMore() {
       let dynamicPage = loadPage+2
       setLoadPage(dynamicPage)
+      //???????
+      if(treatments.length === allTreatments.length) {
+        setLoadButton("Show Less")
+      }
     }
 
     function showLess() {
       setLoadPage(2)
+      //?????
+      setLoadButton("Load More")
     }
 
     return (
@@ -41,10 +61,11 @@ function Treatment() {
         )
       })}
           <br/>
+          {/* allTreatments.length > loadPage || allTreatments.length === loadPage */}
       { (treatments.length > loadPage || treatments.length === loadPage) ? 
       <button onClick={loadMore} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-        Load More</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-          Show Less</button>}
+        {loadButton}</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+          {loadButton}</button>}
           <br/><br/>
 
      {/*    <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">

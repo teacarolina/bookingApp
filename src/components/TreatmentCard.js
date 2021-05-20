@@ -26,6 +26,24 @@ function TreatmentCard({name, price, description, image}) {
   }
     return (
         <>
+
+<div /* x-data="{ cartOpen: false , isOpen: false }"  */class="bg-white">
+
+<div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                        <div class="flex items-end justify-end h-56 w-full" style={{backgroundImage: `url(http://localhost:1337${image.formats.small.url})`}}>
+                            <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                                <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </button>
+                        </div>
+                        <div class="px-5 py-3">
+                            <h3 class="text-gray-700 uppercase">woman mix</h3>
+                            <span class="text-gray-500 mt-2">$12</span>
+                        </div>
+                    </div>
+
+  </div>
+
+
         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
         <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div className="sm:flex sm:items-start">
@@ -47,7 +65,7 @@ function TreatmentCard({name, price, description, image}) {
           </div>
         </div>
         <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button type="button" onClick={openModal} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+          <button type="button" onClick={openModal} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-200 text-base font-medium text-white hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
             Boka
           </button>
           <div type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">

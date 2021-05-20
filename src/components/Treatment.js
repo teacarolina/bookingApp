@@ -29,7 +29,7 @@ function Treatment() {
       console.log(responseAll)
       //console.log(responseAll.data[0].img.formats.small.url)
       setAllTreatments(responseAll.data)
-      console.log("testing", responseAll.data)
+      //console.log("testing", responseAll.data)
     }
 
     fetchAllTreatments()
@@ -39,7 +39,9 @@ function Treatment() {
       let dynamicPage = loadPage+2
       setLoadPage(dynamicPage)
       //???????
-      if(treatments.length === allTreatments.length) {
+      console.log("treatments", treatments.length)
+      console.log("loadpage", loadPage)
+      if(treatments.length === allTreatments.length-2) {
         setLoadButton("Show Less")
       }
     }
@@ -61,8 +63,9 @@ function Treatment() {
         )
       })}
           <br/>
-          {/* allTreatments.length > loadPage || allTreatments.length === loadPage */}
-      { (treatments.length > loadPage || treatments.length === loadPage) ? 
+          {/* allTreatments.length > loadPage || allTreatments.length === loadPage
+                                                                        ??????? */}
+      { (allTreatments.length > loadPage || allTreatments.length === loadPage-2) ? 
       <button onClick={loadMore} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
         {loadButton}</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
           {loadButton}</button>}

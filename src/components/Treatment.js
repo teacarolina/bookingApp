@@ -57,9 +57,31 @@ function Treatment() {
       
       <Header/>
 
+      <div className="bg-gray-100">
+ <div className="w-full text-black bg-main-color">
+        <div x-data="{ open: false }"
+            className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+            <div className="p-4 flex flex-row items-center justify-between">
+                <h1
+                    className="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">
+                      Behandlingar & Boka
+                    </h1>
+            </div>
+            <nav /* :className="{'flex': open, 'hidden': !open} "</div>*/
+                className="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+               
+                   
+                    
+            </nav>
+        </div>
+    </div>
+    </div>
+
+
       <div className="bg-white">
 
 <main className="my-8">
+        
         <div className="container mx-auto px-6">
             <div className="h-64 rounded-md overflow-hidden bg-cover bg-center" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2018/02/18/11/05/the-hand-3161974_1280.jpg)`}}
             
@@ -103,7 +125,7 @@ function Treatment() {
             </div>
             </div>
             <div className="mt-16">
-            <h3 className="text-gray-600 text-2xl font-medium">Behandlingar</h3>
+            <h3 className="text-gray-600 text-2xl font-medium">Boka behandling</h3>
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
          
                 {treatments.map((product)=>{

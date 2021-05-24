@@ -48,6 +48,9 @@ function Login() {
       //ändra state som kommer att rendera någon component vid inloggning
 
       localStorage.setItem("jwt", response.data.jwt)
+      localStorage.setItem("userId", response.data.user.id)
+      localStorage.setItem("username", response.data.user.username)
+      localStorage.setItem("userEmail", response.data.user.email)
       history.push("/")
       window.location.reload()
       //tillfällig lösning på att sidan behöver reloadas

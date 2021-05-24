@@ -6,11 +6,18 @@ import BookingCard from "./BookingCard"
 
 function Booking() {
 
+    const USERNAME = localStorage.getItem("username")
+    const USEREMAIL = localStorage.getItem("userEmail")
+    const USERID = localStorage.getItem("userId")
+
     const [bookings, setBookings] = useState([])
+    const [username, setUsername] = useState(USERNAME)
+    const [userEmail, setUserEmail] = useState(USEREMAIL)
+    const [userId, setUserId] = useState(USERID)
 
     useEffect(()=> {
       const fetchBookings = async()=> {
-        const response = await axios.get("http://localhost:1337/bookings")
+        const response = await axios.get(`http://localhost:1337/bookings?userId.id=${userId}`)
         setBookings(response.data)
       }
 
@@ -48,7 +55,7 @@ function Booking() {
 {/*                 <!-- Profile Card -->
  */}                <div className="bg-white p-3 border-t-4 border-pink-400">
                    
-                    <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Username</h1>
+                    <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{username}</h1>
                     <h3 className="text-gray-600 font-lg text-semibold leading-6">Lorem ipsum dolor </h3>
                     <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
                         consectetur adipisicing elit.
@@ -103,7 +110,7 @@ function Booking() {
                             <div className="grid grid-cols-2">
                                 <div className="px-4 py-2 font-semibold">Emailadress</div>
                                 <div className="px-4 py-2">
-                                    <a className="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
+                                    <a className="text-blue-800" href="mailto:jane@example.com">{userEmail}</a>
                                 </div>
                             </div>
                             <div className="grid grid-cols-2">
@@ -128,16 +135,16 @@ function Booking() {
                         </span>
                         <span className="tracking-wide">Mina bokningar</span>
                     </div>
-                    <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <div className="flex items-center flex-wrap space-x-2 font-semibold text-gray-900 leading-8">
                
                
                  {bookings.map((product)=> {
         return(
+            
           <BookingCard key={product.id} name={product.name} date={product.date} telephone={product.telephone}/>
-        )
+          
+          )
       })}
-
-
                {/*  <!-- End of profile tab --> */}
             </div>
         </div>

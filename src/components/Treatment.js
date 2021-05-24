@@ -106,7 +106,7 @@ function Treatment() {
          
                 {treatments.map((product)=>{
         return(
-          <TreatmentCard key={product.id} image={product.img} name={product.name} price={product.price} description={product.description}/>
+          <TreatmentCard key={product.id} productId={product.id} image={product.img} name={product.name} price={product.price} description={product.description}/>
         )
       })}
           <br/>

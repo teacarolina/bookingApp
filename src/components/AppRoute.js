@@ -1,5 +1,4 @@
 import React from "react";
-import BookingForm from "./BookingForm";
 import Navbar from "./Navbar";
 import Booking from "./Booking";
 import Treatment from "./Treatment";
@@ -24,7 +23,6 @@ export default function AppRoute() {
 
                 <Route path="/" exact component={Landingpage} />
                 <Route path="/behandlingar" component={Treatment} />
-                <Route path="/form" component={BookingForm} />
                 <Route path="/bokningar" component={Booking} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />

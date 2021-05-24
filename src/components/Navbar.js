@@ -11,7 +11,7 @@ function Navbar() {
 
   function logout(e) {
     e.preventDefault()
-    window.localStorage.removeItem("jwt")
+    localStorage.clear()
     history.push("/login")
     window.location.reload()
     //tillfällig lösning på att sidan behöver reloadas
@@ -64,7 +64,7 @@ function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link to="/" className="bg-gray-900 text-pink-100 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Startsida</Link>
                 <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
-                <Link to="/form" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Gör bokning</Link>
+                <Link to="/addtreatment" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Lägg till behandling</Link>
                 <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
             </div>
           </div>
@@ -114,7 +114,7 @@ function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link to="/" className="bg-gray-900 text-pink-100 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Startsida</Link>
                 <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
-                <Link to="/form" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Gör bokning</Link>
+                <Link to="/addtreatment" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Lägg till behandling</Link>
                 <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
             </div>
           </div>

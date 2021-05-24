@@ -99,8 +99,8 @@ function Navbar() {
                     <Link to="/" className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Startsida</Link>
                     <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Behandlingar</Link>
                     <Link to="/addtreatment" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Lägg till behandling</Link>
-                    <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
-                  </div>
+{/*                     <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
+ */}                  </div>
                 </div>
               </div>
               
@@ -115,8 +115,8 @@ function Navbar() {
                 <Link to="/" className="bg-gray-900 text-pink-100 block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Startsida</Link>
                 <Link to="/behandlingar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
                 <Link to="/addtreatment" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Lägg till behandling</Link>
-                <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
-            </div>
+{/*                 <Link to="/bokningar" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
+ */}            </div>
           </div>
         </nav>
     }

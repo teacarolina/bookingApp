@@ -9,7 +9,8 @@ function Booking() {
     const USERNAME = localStorage.getItem("username")
     const USEREMAIL = localStorage.getItem("userEmail")
     const USERID = localStorage.getItem("userId")
-
+    
+    const [token, setToken] = useState(localStorage.getItem("jwt"))
     const [bookings, setBookings] = useState([])
     const [username, setUsername] = useState(USERNAME)
     const [userEmail, setUserEmail] = useState(USEREMAIL)
@@ -17,7 +18,11 @@ function Booking() {
 
     useEffect(()=> {
       const fetchBookings = async()=> {
-        const response = await axios.get(`http://localhost:1337/bookings?userId.id=${userId}`)
+        const response = await axios.get(`http://localhost:1337/bookings?userId.id=${userId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    })
         setBookings(response.data)
       }
 

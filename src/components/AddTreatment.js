@@ -9,8 +9,9 @@ function AddTreatment() {
     const initialValues = {
         name:"",
         description:"",
-        price:null
+        price:0,
     }
+    //price:0 
 
     const [treatment, setTreatment] = useState(initialValues)
     const [fileData, setFileData] = useState()

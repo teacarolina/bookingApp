@@ -27,44 +27,24 @@ function TreatmentCard({name, price, description, image}) {
     return (
         <>
 
-{/* HÄR ÄR DET GAMLA CARDET  
-        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-min">
-        <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div className="sm:flex sm:items-start">
-           
-            <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <img src={`http://localhost:1337${image.formats.small.url}`} alt="some image from database"/>
-    
-     <div>
-         </div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                {name}
-              </h3>
-              <div className="mt-2">
-                <p className="text-sm text-gray-500">
-                    {description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button type="button" onClick={openModal} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-pink-200 text-base font-medium text-white hover:bg-pink-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-            Boka
-          </button>
-          <div type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-            {price}
-          </div>
-        </div>
-    </div>  
-    <Modal
+                    <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                        <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage: `url(http://localhost:1337${image.formats.small.url})`}}/* style="background-image: url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')" */>
+                            <button onClick={openModal} className="p-2 rounded-full bg-pink-600 text-white mx-5 -mb-4 hover:bg-pink-400 focus:outline-none focus:bg-pink-500">
+Boka                            </button>
+                        </div>
+                        <div className="px-5 py-3">
+                            <h3 className="text-gray-700 uppercase">{name}</h3>
+                            <h5 className="text-gray-500 mt-2">{description}</h5>
+                            <span className="text-gray-500 mt-2">{price} SEK</span>
+                        </div>
+                    </div>
+                    <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
 
-           <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2> 
           <button onClick={closeModal}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path fill="hotpink" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
@@ -94,47 +74,7 @@ function TreatmentCard({name, price, description, image}) {
               </div>
           </form>
         </Modal>
- GAMLA CARDET MED MODAL SLUTAR HÄÄÄÄÄR  */}
-
-
-
-
-
-
-     
-                    <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                        <div class="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage: `url(http://localhost:1337${image.formats.small.url})`}}/* style="background-image: url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')" */>
-                            <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                                <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            </button>
-                        </div>
-                        <div class="px-5 py-3">
-                            <h3 class="text-gray-700 uppercase">woman mix</h3>
-                            <span class="text-gray-500 mt-2">$12</span>
-                        </div>
-                    </div>
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
         </>
     )
 }

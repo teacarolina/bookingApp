@@ -1,9 +1,9 @@
+//beautify??
+
 import React, {useState} from 'react';
 import Modal from 'react-modal';
 import axios from "axios";
 import {useHistory} from "react-router-dom"
-
-//ändra färg på knappar
 
 const customStyles = {
   content : {
@@ -65,7 +65,7 @@ function TreatmentCard({productId, name, price, description, image}) {
 
                     <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
                         <div className="flex items-end justify-end h-56 w-full bg-cover" style={{backgroundImage: `url(http://localhost:1337${image.formats.small.url})`}}/* style="background-image: url('https://images.unsplash.com/photo-1590664863685-a99ef05e9f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=345&q=80')" */>
-                            <button onClick={openModal} className="p-2 mx-5 -mb-4 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-blue-500">
+                            <button onClick={openModal} className="p-2 mx-5 -mb-4 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-pink-500">
 Boka                            </button>
                         </div>
                         <div className="px-5 py-3">
@@ -116,4 +116,4 @@ Boka                            </button>
     )
 }
 
-export default TreatmentCard
+export default TreatmentCard;

@@ -7,28 +7,21 @@ import Login from "./Login";
 import Register from "./Register";
 import AddTreatment from "./AddTreatment";
 
-//React-router-DOM
 import {Route, BrowserRouter as Router} from "react-router-dom";
 
 export default function AppRoute() {
-    
-    return(
-        <>
-            <Router>
 
-                <Navbar/>
+    return ( <> <Router>
 
-                {/* vi skriver exact component för när den matchar exakt med den här path så 
-                visas Landingpage */}
+        <Navbar/>
 
-                <Route path="/" exact component={Landingpage} />
-                <Route path="/behandlingar" component={Treatment} />
-                <Route path="/bokningar" component={Booking} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/addtreatment" component={AddTreatment} />
-                
-            </Router>
-        </>
+        <Route path="/" exact component={Landingpage}/>
+        <Route path="/behandlingar" component={Treatment}/>
+        <Route path="/bokningar" component={Booking}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/addtreatment" component={AddTreatment}/>
+
+    </Router> </>
     )
 }

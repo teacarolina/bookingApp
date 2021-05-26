@@ -1,8 +1,11 @@
+//beautify
+
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
 import TreatmentCard from "./TreatmentCard";
+/* import {Link} from "react-router-dom" */
 
 function Treatment() {
 
@@ -10,10 +13,16 @@ function Treatment() {
     const [loadPage, setLoadPage] = useState(2)
     const [loadButton, setLoadButton] = useState("Ladda fler")
     const [allTreatments, setAllTreatments] = useState([])
+
+   /*  const [token, setToken] = useState(localStorage.getItem("jwt")) */
     
     useEffect(()=> {
         const fetchTreatments = async()=> {
-        const response = await axios.get(`http://localhost:1337/products?_limit=${loadPage}`)
+        const response = await axios.get(`http://localhost:1337/products?_limit=${loadPage}`/* , {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        } */)
         console.log(response)
         //console.log(response.data[0].img.formats.small.url)
         setTreatments(response.data)
@@ -113,7 +122,7 @@ function Treatment() {
                 <div className="w-full h-64 mt-8 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:mt-0 md:w-1/2" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2016/09/18/09/01/woman-1677558_1280.jpg)`}} /* style="background-image: url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80')" */>
                     <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
                         <div className="px-10 max-w-xl">
-                            <h2 className="text-2xl text-white font-semibold">Lashlift</h2>
+                            <h2 className="text-2xl text-white font-semibold">Lashlift & Fransförlängning</h2>
                             <p className="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum pariatur.</p>
                             <button className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-blue-500">
                                 <span>Läs mer</span>
@@ -124,8 +133,10 @@ function Treatment() {
                 </div>
             </div>
             </div>
+            {/* {token ? (<> */}
             <div className="mt-16">
             <h3 className="text-gray-600 text-2xl font-medium">Boka behandling</h3>
+         
                 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
          
                 {treatments.map((product)=>{
@@ -135,13 +146,20 @@ function Treatment() {
       })}
           <br/>
         
-                </div>
+                </div> 
                 </div> <br/><br/>
                 { (allTreatments.length > loadPage || allTreatments.length === loadPage-2) ? 
       <button onClick={loadMore} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
         {loadButton}</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
           {loadButton}</button>}
-         
+        {/*   </>) : <> */}
+          {/* <div className="mt-16">
+            <h3 className="text-gray-600 text-2xl font-medium">Boka behandling</h3>
+            <div>
+            <Link to="/login" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Logga in här för att boka din nästa behandling 😍</Link>
+            </div>
+            </div> */}
+          {/*   </>} */}
                 </main>
                 </div>
 

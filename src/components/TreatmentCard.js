@@ -24,13 +24,13 @@ function TreatmentCard({productId, name, price, description, image}) {
   const [modalIsOpen,setIsOpen] = React.useState(false);
   const [userId, setUserId] = useState(USERID)
   const [username, setUsername] = useState(USERNAME)
+  const [token, setToken] = useState(localStorage.getItem("jwt"))
 
   const history = useHistory()
 
   const initalValues = {
-    //name: "",
     date: "",
-    telephone: 0
+    telephone: 0,
   }
 
   const [newBooking, setNewBooking] = useState(initalValues)
@@ -48,11 +48,15 @@ function TreatmentCard({productId, name, price, description, image}) {
       userId: userId,
       productId: productId
     }).then( (res)=> history.push("/bokningar"))
-  }
+  } 
 
 
   function openModal() {
-    setIsOpen(true);
+    if(token) {
+    setIsOpen(true)
+    } else {
+      history.push("/login")
+    }
   }
 
   function closeModal(){
@@ -94,9 +98,6 @@ Boka                            </button>
           
           <form onSubmit={onHandleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-                {/* <div>
-                  <input id="name" name="name" type="text" value={newBooking.name} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Ditt namn"/>
-                </div> */}
                 <div>
                   <input id="date" name="date" type="datetime-local" value={newBooking.date} onChange={onHandleChange} required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Telefonnummer"/>
                 </div>

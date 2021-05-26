@@ -5,7 +5,6 @@ import axios from "axios";
 import Header from "./Header";
 import Footer from "./Footer";
 import TreatmentCard from "./TreatmentCard";
-/* import {Link} from "react-router-dom" */
 
 function Treatment() {
 
@@ -13,8 +12,6 @@ function Treatment() {
     const [loadPage, setLoadPage] = useState(2)
     const [loadButton, setLoadButton] = useState("Ladda fler")
     const [allTreatments, setAllTreatments] = useState([])
-
-   /*  const [token, setToken] = useState(localStorage.getItem("jwt")) */
     
     useEffect(()=> {
         const fetchTreatments = async()=> {
@@ -76,7 +73,7 @@ function Treatment() {
                       Behandlingar & Boka
                     </h1>
             </div>
-            <nav /* :className="{'flex': open, 'hidden': !open} "</div>*/
+            <nav 
                 className="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
                
                    
@@ -92,9 +89,7 @@ function Treatment() {
 <main className="my-8">
         
         <div className="container mx-auto px-6">
-            <div className="h-64 rounded-md overflow-hidden bg-cover bg-center" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2018/02/18/11/05/the-hand-3161974_1280.jpg)`}}
-            
-            /* style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')" */>
+            <div className="h-64 rounded-md overflow-hidden bg-cover bg-center" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2018/02/18/11/05/the-hand-3161974_1280.jpg)`}}>
                 <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
                     <div className="px-10 max-w-xl">
                         <h2 className="text-2xl text-white font-semibold">Naglar</h2>
@@ -133,7 +128,6 @@ function Treatment() {
                 </div>
             </div>
             </div>
-            {/* {token ? (<> */}
             <div className="mt-16">
             <h3 className="text-gray-600 text-2xl font-medium">Boka behandling</h3>
          
@@ -152,14 +146,6 @@ function Treatment() {
       <button onClick={loadMore} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
         {loadButton}</button> : <button onClick={showLess} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
           {loadButton}</button>}
-        {/*   </>) : <> */}
-          {/* <div className="mt-16">
-            <h3 className="text-gray-600 text-2xl font-medium">Boka behandling</h3>
-            <div>
-            <Link to="/login" className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Logga in här för att boka din nästa behandling 😍</Link>
-            </div>
-            </div> */}
-          {/*   </>} */}
                 </main>
                 </div>
 

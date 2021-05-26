@@ -139,7 +139,7 @@ function Booking() {
                  {bookings.map((product)=> {
         return(
             
-          <BookingCard key={product.id} name={product.name} date={product.date} telephone={product.telephone}/>
+          <BookingCard key={product.id} bookingId={product.id} name={product.name} date={product.date} telephone={product.telephone}/>
           
           )
       })}

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-//useEffect?
 import axios from "axios";
 import {Link, useHistory} from "react-router-dom";
 import Header from "./Header";
@@ -49,8 +48,7 @@ function Register() {
     }
 
     return ( <> <Header/>
-        {/*registerComplete ? (<h1>Du har nu ett konto och kan logga in</h1>) : */
-    } < div className = "flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" > <div className="max-w-md w-full space-y-8">
+      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> <div className="max-w-md w-full space-y-8">
         <div>
             <img
                 className="mx-auto h-16 w-auto"

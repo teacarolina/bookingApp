@@ -4,8 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {useHistory} from "react-router-dom";
 
-//ta bort console log och onödiga kommentarer??????!!
-
 function AddTreatment() {
 
     const initialValues = {
@@ -13,7 +11,6 @@ function AddTreatment() {
         description: "",
         price: 0
     }
-    //price:0 - change this so I can see price??
 
     const [treatment,
         setTreatment] = useState(initialValues)
@@ -51,7 +48,7 @@ function AddTreatment() {
             .then(history.push("/"))
     }
 
-    return ( <> <Header/> < div className = "flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" > <div className="max-w-md w-full space-y-8">
+    return ( <> <Header/> <div className = "flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> <div className="max-w-md w-full space-y-8">
         <div>
             <img
                 className="mx-auto h-16 w-auto"

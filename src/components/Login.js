@@ -4,8 +4,6 @@ import {Link, useHistory} from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
-//ta bort console log??????
-
 function Login() {
 
     const initalValues = {
@@ -70,8 +68,7 @@ function Login() {
     }
 
     return ( <> <Header/>
-        {/*auth ? (<h1>Välkommen {username}</h1>) : */
-    } < div className = "flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" > <div className="max-w-md w-full space-y-8">
+      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"> <div className="max-w-md w-full space-y-8">
         <div>
             <img
                 className="mx-auto h-16 w-auto"

@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import TreatmentInfo from './TreatmentInfo';
 
-//price ??? how do I get price from other map 
-
 function BookingCard({bookingId, name, date, telephone}) {
 
     const [treatments, setTreatments] = useState([])

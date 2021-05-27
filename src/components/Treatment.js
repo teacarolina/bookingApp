@@ -18,22 +18,17 @@ function Treatment() {
     useEffect(() => {
         const fetchTreatments = async() => {
             const response = await axios.get(`http://localhost:1337/products?_limit=${loadPage}`)
-            console.log(response)
-            //console.log(response.data[0].img.formats.small.url)
             setTreatments(response.data)
-            //console.log(response.data)
         }
-
+        
         fetchTreatments()
     }, [loadPage])
 
+    //to fetch all treatments in the db to set length of array to correct number
     useEffect(() => {
         const fetchAllTreatments = async() => {
             const responseAll = await axios.get(`http://localhost:1337/products`)
-            console.log(responseAll)
-            //console.log(responseAll.data[0].img.formats.small.url)
             setAllTreatments(responseAll.data)
-            //console.log("testing", responseAll.data)
         }
 
         fetchAllTreatments()
@@ -42,17 +37,13 @@ function Treatment() {
     function loadMore() {
         let dynamicPage = loadPage + 2
         setLoadPage(dynamicPage)
-        //???????
-        console.log("treatments", treatments.length)
-        console.log("loadpage", loadPage)
-        if (treatments.length === allTreatments.length - 2) {
+        if (treatments.length === allTreatments.length) {
             setLoadButton("Visa färre")
         }
     }
 
     function showLess() {
         setLoadPage(2)
-        //?????
         setLoadButton("Ladda fler")
     }
 
@@ -76,12 +67,12 @@ function Treatment() {
 <main className="my-8">
         
         <div className="container mx-auto px-6">
-            <div className="h-64 rounded-md overflow-hidden bg-cover bg-center" style={{backgroundImage: `url(https://cdn.pixabay.com/photo / 2018 / 02 / 18 / 11 / 05 / the - hand - 3161974 _1280.jpg) `}}>
+            <div className="h-64 rounded-md overflow-hidden bg-cover bg-center" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2018/02/18/11/05/the-hand-3161974_1280.jpg)`}}>
                 <div className="bg-gray-900 bg-opacity-50 flex items-center h-full">
                     <div className="px-10 max-w-xl">
                         <h2 className="text-2xl text-white font-semibold">Naglar</h2>
                         <p className="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum pariatur.</p>
-                        <button className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-blue-500">
+                        <button className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-pink-500">
                             <span>Läs mer</span>
                             <svg className="h-5 w-5 mx-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </button>
@@ -89,13 +80,13 @@ function Treatment() {
                 </div>
             </div>
             <div className="md:flex mt-8 md:-mx-4">
-                <div className="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2" style={{backgroundImage: ` url(https : //cdn.pixabay.com/photo/2020/09/14/16/53/eye-5571467_1280.jpg)`}} /* style="background-image: url('https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80')" */> < div className = "bg-gray-900 bg-opacity-50 flex items-center h-full" > <div className="px-10 max-w-xl">
+                <div className="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2" style={{backgroundImage: `url(https://cdn.pixabay.com/photo/2020/09/14/16/53/eye-5571467_1280.jpg)`}}> < div className = "bg-gray-900 bg-opacity-50 flex items-center h-full" > <div className="px-10 max-w-xl">
         <h2 className="text-2xl text-white font-semibold">Browlift</h2>
         <p className="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur
             adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum
             pariatur.</p>
         <button
-            className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-blue-500">
+            className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-pink-500">
             <span>Läs mer
             </span>
             <svg
@@ -116,10 +107,9 @@ function Treatment() {
 > < div className = "bg-gray-900 bg-opacity-50 flex items-center h-full" > <div className="px-10 max-w-xl">
         <h2 className="text-2xl text-white font-semibold">Lashlift & Fransförlängning</h2>
         <p className="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur
-            adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum
-            pariatur.</p>
+            adipisicing elit. Tempore facere provident molestias.</p>
         <button
-            className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-blue-500">
+            className="flex items-center mt-4 px-3 py-2 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-pink-500">
             <span>Läs mer</span>
             <svg
                 className="h-5 w-5 mx-2"
@@ -151,7 +141,7 @@ function Treatment() {
 
     </div> </div> <br/> <br/>
         {
-        (allTreatments.length > loadPage || allTreatments.length === loadPage - 2)
+        (allTreatments.length > loadPage || allTreatments.length === loadPage)
             ? <button
                     onClick={loadMore}
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">

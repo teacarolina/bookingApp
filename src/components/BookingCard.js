@@ -10,10 +10,7 @@ function BookingCard({bookingId, name, date, telephone}) {
     useEffect(()=> {
         const fetchTreatments = async()=> {
         const response = await axios.get(`http://localhost:1337/products?bookingId=${bookingId}`)
-        console.log(response)
-        //console.log(response.data[0].img.formats.small.url)
         setTreatments(response.data)
-        //console.log(response.data)
       }
 
       fetchTreatments()
@@ -21,7 +18,6 @@ function BookingCard({bookingId, name, date, telephone}) {
 
 function onHandleSubmit(e) {
     e.preventDefault()
-    console.log(bookingId)
     axios.delete(`http://localhost:1337/bookings/${bookingId}`, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -29,6 +25,7 @@ function onHandleSubmit(e) {
     }).then( (res)=> window
     .location
     .reload())
+    //tillfällig lösning på att sidan behöver reloadas
   } 
 
     return ( <> <div

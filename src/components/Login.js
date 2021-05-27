@@ -35,12 +35,6 @@ function Login() {
             password: loginValues.password
         })
             .then(response => {
-                //Handle success
-                console.log("User profile", response.data.user);
-                console.log("User token", response.data.jwt);
-                //spara response.data.jwt i client sida
-                console.log("User data", response.data);
-
                 localStorage.setItem("jwt", response.data.jwt)
                 localStorage.setItem("userId", response.data.user.id)
                 localStorage.setItem("username", response.data.user.username)
@@ -52,11 +46,7 @@ function Login() {
                 //tillfällig lösning på att sidan behöver reloadas
             })
             .catch((err) => {
-                console.log(err);
-                // if user is not registered it needs to show that they need to be registered
-                // setError("Fel inloggningsuppgifter")
                 setError(err.response.data.message[0].messages[0].message)
-                //setError(err.response.message[0].messages[0].message)
             })
     }
 

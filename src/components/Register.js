@@ -14,8 +14,6 @@ function Register() {
 
     const [registerValues,
         setRegisterValues] = useState(initialValues);
-    // const [username, setUsername] = useState(initialValues); const
-    // [registerComplete, setRegisterComplete] = useState(false);
     const [error,
         setError] = useState("");
     const history = useHistory();
@@ -31,7 +29,6 @@ function Register() {
             .then((e) => {
                 if (e.data.user) 
                     history.push("/login")
-                    //setRegisterComplete(true)
                 })
             .catch((err) => {
                 setError(err.response.data.message[0].messages[0].message)
@@ -44,7 +41,6 @@ function Register() {
             ...registerValues,
             [e.target.name]: e.target.value
         })
-        //setUsername({...username, [e.target.name]:e.target.value})
     }
 
     return ( <> <Header/>

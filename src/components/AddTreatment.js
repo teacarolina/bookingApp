@@ -4,12 +4,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {useHistory} from "react-router-dom";
 
+//admin access only should be added to this page
 function AddTreatment() {
 
     const initialValues = {
         name: "",
         description: "",
-        price: 0
+        price: "",
     }
 
     const [treatment,

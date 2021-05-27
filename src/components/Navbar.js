@@ -4,9 +4,12 @@ import {Link, useHistory} from "react-router-dom";
 function Navbar() {
 
     const JWT = localStorage.getItem("jwt");
+    const USERNAME = localStorage.getItem("username");
     const [jwt,
         setJwt] = useState(JWT);
-    const history = useHistory()
+    const [username,
+        setUsername] = useState(USERNAME);
+    const history = useHistory();
 
     function logout(e) {
         e.preventDefault()
@@ -84,9 +87,12 @@ function Navbar() {
                                 <Link
                                     to="/behandlingar"
                                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Behandlingar</Link>
+                                {/* tillfällig lösning på admin */}
+                                {username === "admin" ? 
                                 <Link
                                     to="/addtreatment"
                                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Lägg till behandling</Link>
+                                : <></>}
                                 <Link
                                     to="/bokningar"
                                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
@@ -110,9 +116,11 @@ function Navbar() {
                 <Link
                     to="/behandlingar"
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
+                {username === "admin" ?
                 <Link
                     to="/addtreatment"
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Lägg till behandling</Link>
+                : <></>}
                 <Link
                     to="/bokningar"
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
@@ -183,9 +191,11 @@ function Navbar() {
                                         <Link
                                             to="/behandlingar"
                                             className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Behandlingar</Link>
+                                        {username === "admin" ?
                                         <Link
                                             to="/addtreatment"
                                             className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Lägg till behandling</Link>
+                                        : <></>}
                                     </div>
                                 </div>
                             </div>
@@ -209,9 +219,11 @@ function Navbar() {
                             <Link
                                 to="/behandlingar"
                                 className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
+                            {username === "admin" ?
                             <Link
                                 to="/addtreatment"
                                 className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Lägg till behandling</Link>
+                            : <></>}
                         </div>
                     </div>
                 </nav>

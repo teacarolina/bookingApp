@@ -2,13 +2,45 @@ import React, {useState, useEffect} from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from 'axios';
+import Modal from 'react-modal';
 import BookingCard from "./BookingCard";
+import {useHistory} from "react-router-dom";
 
 function Booking() {
+
+
+    const initialValues = {
+        name: "",
+        description: "",
+        price: "",
+    }
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)'
+        }
+    };
+
+    const initalBookingValues = {
+        name: "",
+        description: "",
+        price: "",
+    }
+
+    const [changeTreatment,
+        setChangeTreatment] = useState(initalBookingValues)
 
     const USERNAME = localStorage.getItem("username")
     const USEREMAIL = localStorage.getItem("userEmail")
     const USERID = localStorage.getItem("userId")
+
+    const [allTreatments,
+        setAllTreatments] = useState([])
 
     //is assigned value but never used
     const [token,
@@ -21,6 +53,60 @@ function Booking() {
         setUserEmail] = useState(USEREMAIL)
     const [userId,
         setUserId] = useState(USERID)
+        const [modalIsOpen,
+            setIsOpen] = React.useState(false);
+    
+        const [treatment,
+            setTreatment] = useState(initialValues)
+        const [fileData,
+            setFileData] = useState()
+        const history = useHistory()
+    
+        function onHandleChange(e) {
+            setTreatment({
+                ...treatment,
+                [e.target.name]: e.target.value
+            })
+        }
+
+        function onHandleChangeTreatment(e) {
+            setChangeTreatment({...changeTreatment, [e.target.name]:e.target.value})
+        }
+    
+        function onHandleChangeImg(e) {
+            setFileData(e.target.files[0])
+        }
+    
+        function onHandleSubmit(e) {
+            e.preventDefault()
+            axios
+                .post("http://localhost:1337/products", {
+                name: treatment.name,
+                description: treatment.description,
+                price: treatment.price
+            })
+                .then((res) => {
+                    const data = new FormData()
+                    data.append("files", fileData)
+                    data.append("ref", "product")
+                    data.append("field", "img")
+                    data.append("refId", res.data.id)
+                    axios.post("http://localhost:1337/upload", data)
+                })
+                .then(history.push("/"))
+        }
+
+        function deleteBooking(id) {
+            //e.preventDefault()
+            axios.delete(`http://localhost:1337/products/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }).then( (res)=> window
+            .location
+            .reload())
+            //tillfällig lösning på att sidan behöver reloadas
+          }
 
     //has missing dependencies, either include them or remove the dependency array
     useEffect(() => {
@@ -35,6 +121,27 @@ function Booking() {
 
         fetchBookings()
     }, [])
+
+    useEffect(() => {
+        const fetchAllTreatments = async() => {
+            const responseAll = await axios.get(`http://localhost:1337/products`)
+            setAllTreatments(responseAll.data)
+        }
+
+        fetchAllTreatments()
+    }, [])
+
+    function openModal() {
+            setIsOpen(true)
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
+    function onHandleSubmitChange() {
+//SKRIV DEN HÄR FUNKTIONEN????
+    }
 
     return ( <> <Header/> <div className="bg-gray-100"> <div className="w-full text-black bg-main-color">
         <div
@@ -75,6 +182,223 @@ function Booking() {
             </div>
 
         </div>
+        {username === "admin" ? <div className="w-full h-auto md:w-9/12 mx-2 h-64">
+            <div className="bg-white p-3 shadow-sm rounded-sm">
+                <div
+                    className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg
+                            className="h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </span>
+                    <span className="tracking-wide">Lägg till behandling</span>
+                 
+                </div>
+                <form onSubmit={onHandleSubmitChange} method="POST">
+                <div class="bg-white shadow rounded-lg p-6">        
+    <div class="grid lg:grid-cols-2 gap-6">
+        
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+      
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+        
+          <p>
+            <label for="name" class="bg-white text-gray-600 px-1">Behandlingens namn *</label>
+          </p>
+        </div>
+        <p>
+          <input id="name" name="name" value={treatment.name}
+                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="price" class="bg-white text-gray-600 px-1">Pris *</label>
+          </p>
+        </div>
+        <p>
+          <input id="price" name="price" value={treatment.price}
+                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="description" class="bg-white text-gray-600 px-1">Beskrivning *</label>
+          </p>
+        </div>
+        <p>
+          <input id="description" name="description" value={treatment.description}
+                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="file" class="bg-white text-gray-600 px-1">Bild *</label>
+          </p>
+        </div>
+        <p>
+          <input id="file" name="file" onChange={onHandleChangeImg} autocomplete="false" tabindex="0" type="file" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+    </div>
+    <div class="border-t mt-6 pt-3">
+      <button class="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
+        Spara
+      </button>
+      
+    </div>
+  </div>
+</form>
+  {/* nästa form */}
+
+<br/>
+  <div
+                    className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg
+                            className="h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </span>
+                    <span className="tracking-wide">Ta bort/Ändra behandling</span>
+                 
+                </div>
+               
+                <div className="text-gray-700">
+                    <div className="grid md:grid-cols-6 text-sm">                
+                            <div className="font-semibold">Id</div>
+                            <div className="font-semibold">Namn</div>
+                            <div className="font-semibold">Beskrivning</div>
+                            <div className="font-semibold">Pris</div>
+                            <div className="font-semibold">Bild</div>  
+                            <div className="font-semibold">Action</div> 
+                            {allTreatments.map((product) => {
+                        return (<><p>{product.id}</p>
+                        <p>{product.name}</p>
+                        <p>{product.description}</p>
+                        <p>{product.price}</p>
+                        <p>Bild</p>
+                        <div><button onClick={()=>deleteBooking(product.id)}>X</button>
+                        <button onClick={()=>openModal(product.id)}>V</button></div></>)
+                    })}
+                    <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          ariaHideApp={false}
+          contentLabel="Example Modal"
+        >
+
+          <button onClick={closeModal}>
+          <svg xmlns="http://www.w3.org/2000/svg" width=" 24 " height=" 24 " viewBox=" 0 0 24 24 ">
+          <path fill="hotpink" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+ </svg> </button>
+          
+ <form onSubmit={onHandleSubmit}>
+                
+                
+ <div
+                    className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                    <span clas="text-green-500">
+                        <svg
+                            className="h-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                        </svg>
+                    </span>
+                    <span className="tracking-wide">Ändra behandling</span>
+                 
+                </div>
+               
+                <div class="bg-white shadow rounded-lg p-6">        
+    <div class="grid lg:grid-cols-2 gap-6">
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="name" class="bg-white text-gray-600 px-1">Behandlingens namn *</label>
+          </p>
+        </div>
+        <p>
+          <input id="name" name="name" value={changeTreatment.name}
+                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="lastname" class="bg-white text-gray-600 px-1">Pris *</label>
+          </p>
+        </div>
+        <p>
+          <input id="price" name="price" value={changeTreatment.price}
+                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="username" class="bg-white text-gray-600 px-1">Beskrivning *</label>
+          </p>
+        </div>
+        <p>
+          <input id="description" name="description" value={changeTreatment.description}
+                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+     {/*  <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
+        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label for="password" class="bg-white text-gray-600 px-1">Bild *</label>
+          </p>
+        </div>
+        <p>
+          <input id="password" autocomplete="false" tabindex="0" type="file" class="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div> */}
+    </div>
+    <div class="border-t mt-6 pt-3">
+      <button class="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
+        Spara
+      </button>
+    </div>
+  </div>
+                         
+               
+               
+            </form> </Modal>
+                    </div>
+                </div>
+                
+
+                
+            </div> </div>: 
         <div className="w-full h-auto md:w-9/12 mx-2 h-64">
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
@@ -125,7 +449,6 @@ function Booking() {
                 </div>
 
             </div>
-
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -158,9 +481,9 @@ function Booking() {
                     })}
 
                 </div>
-            </div>
-        </div>
-    </div> </div>
+            </div> 
+        </div> }
+    </div> </div> 
 </div > <Footer/> </>
     )
 }

@@ -211,57 +211,57 @@ price: changeTreatment.price
                  
                 </div>
                 <form onSubmit={onHandleSubmit} method="POST">
-                <div class="bg-white shadow rounded-lg p-6">        
-    <div class="grid lg:grid-cols-2 gap-6">
+                <div className="bg-white shadow rounded-lg p-6">        
+    <div className="grid lg:grid-cols-2 gap-6">
         
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
       
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
         
           <p>
-            <label for="name" class="bg-white text-gray-600 px-1">Behandlingens namn *</label>
+            <label htmlFor="name" className="bg-white text-gray-600 px-1">Behandlingens namn *</label>
           </p>
         </div>
         <p>
           <input id="name" name="name" value={treatment.name}
-                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                        onChange={onHandleChange} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="price" class="bg-white text-gray-600 px-1">Pris *</label>
+            <label htmlFor="price" className="bg-white text-gray-600 px-1">Pris *</label>
           </p>
         </div>
         <p>
           <input id="price" name="price" value={treatment.price}
-                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                        onChange={onHandleChange} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="description" class="bg-white text-gray-600 px-1">Beskrivning *</label>
+            <label htmlFor="description" className="bg-white text-gray-600 px-1">Beskrivning *</label>
           </p>
         </div>
         <p>
           <input id="description" name="description" value={treatment.description}
-                        onChange={onHandleChange} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                        onChange={onHandleChange} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="file" class="bg-white text-gray-600 px-1">Bild *</label>
+            <label htmlFor="file" className="bg-white text-gray-600 px-1">Bild *</label>
           </p>
         </div>
         <p>
-          <input id="file" name="file" onChange={onHandleChangeImg} autocomplete="false" tabindex="0" type="file" class="py-1 px-1 outline-none block h-full w-full"/>
+          <input id="file" name="file" onChange={onHandleChangeImg} autoComplete="false" tabIndex="0" type="file" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
     </div>
-    <div class="border-t mt-6 pt-3">
-      <button class="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
+    <div className="border-t mt-6 pt-3">
+      <button className="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
         Spara
       </button>
       
@@ -305,11 +305,12 @@ price: changeTreatment.price
                         <p>{product.description}</p>
                         <p>{product.price}</p>
                         <p>Bild</p>
-                        <div>                      <button onClick={()=>openModal(product.id)} class="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
-  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+                        {/* kan man göra så här? */}
+                        <div key={product.id}>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
 </button>
-<button onClick={()=>deleteBooking(product.id)} class="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
-  <svg class="w-5 h-5 fill-current" viewBox="0 0 50 25"><path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path><path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path><path d="M12 2h8v2h-8z" fill="currentColor"></path>
+<button onClick={()=>deleteBooking(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+  <svg className="w-5 h-5 fill-current" viewBox="0 0 50 25"><path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path><path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path><path d="M12 2h8v2h-8z" fill="currentColor"></path>
 </svg>
 </button>
 </div></>)
@@ -350,54 +351,54 @@ price: changeTreatment.price
                  
                 </div>
                
-                <div class="bg-white shadow rounded-lg p-6">        
-    <div class="grid lg:grid-cols-2 gap-6">
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+                <div className="bg-white shadow rounded-lg p-6">        
+    <div className="grid lg:grid-cols-2 gap-6">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="name" class="bg-white text-gray-600 px-1">Behandlingens namn *</label>
+            <label htmlFor="name" className="bg-white text-gray-600 px-1">Behandlingens namn *</label>
           </p>
         </div>
         <p>
           <input id="name" name="name" value={changeTreatment.name}
-                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="lastname" class="bg-white text-gray-600 px-1">Pris *</label>
+            <label htmlFor="lastname" className="bg-white text-gray-600 px-1">Pris *</label>
           </p>
         </div>
         <p>
           <input id="price" name="price" value={changeTreatment.price}
-                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-      <div class="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="username" class="bg-white text-gray-600 px-1">Beskrivning *</label>
+            <label htmlFor="username" className="bg-white text-gray-600 px-1">Beskrivning *</label>
           </p>
         </div>
         <p>
           <input id="description" name="description" value={changeTreatment.description}
-                            onChange={onHandleChangeTreatment} autocomplete="false" tabindex="0" type="text" class="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-     {/*  <div class="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
-        <div class="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+     {/*  <div className="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
           <p>
-            <label for="password" class="bg-white text-gray-600 px-1">Bild *</label>
+            <label for="password" className="bg-white text-gray-600 px-1">Bild *</label>
           </p>
         </div>
         <p>
-          <input id="password" autocomplete="false" tabindex="0" type="file" class="py-1 px-1 outline-none block h-full w-full"/>
+          <input id="password" autocomplete="false" tabindex="0" type="file" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div> */}
     </div>
-    <div class="border-t mt-6 pt-3">
-      <button class="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
+    <div className="border-t mt-6 pt-3">
+      <button className="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
         Spara
       </button>
     </div>

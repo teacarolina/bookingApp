@@ -131,16 +131,23 @@ function Booking() {
         fetchAllTreatments()
     }, [])
 
-    function openModal() {
+    function openModal(id) {
             setIsOpen(true)
+            localStorage.setItem("changeId", id)
     }
 
     function closeModal() {
         setIsOpen(false);
     }
 
-    function onHandleSubmitChange() {
-//SKRIV DEN HÄR FUNKTIONEN????
+    function onHandleSubmitChange(id) {
+//Form submission canceled because the form is not connected?
+axios
+.put(`http://localhost:1337/products/${id}`, {
+name: changeTreatment.name,
+description: changeTreatment.description,
+price: changeTreatment.price
+}).then(history.push("/"))
     }
 
     return ( <> <Header/> <div className="bg-gray-100"> <div className="w-full text-black bg-main-color">
@@ -203,7 +210,7 @@ function Booking() {
                     <span className="tracking-wide">Lägg till behandling</span>
                  
                 </div>
-                <form onSubmit={onHandleSubmitChange} method="POST">
+                <form onSubmit={onHandleSubmit} method="POST">
                 <div class="bg-white shadow rounded-lg p-6">        
     <div class="grid lg:grid-cols-2 gap-6">
         
@@ -298,8 +305,14 @@ function Booking() {
                         <p>{product.description}</p>
                         <p>{product.price}</p>
                         <p>Bild</p>
-                        <div><button onClick={()=>deleteBooking(product.id)}>X</button>
-                        <button onClick={()=>openModal(product.id)}>V</button></div></>)
+                        <div>                      <button onClick={()=>openModal(product.id)} class="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+  <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
+</button>
+<button onClick={()=>deleteBooking(product.id)} class="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+  <svg class="w-5 h-5 fill-current" viewBox="0 0 50 25"><path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path><path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path><path d="M12 2h8v2h-8z" fill="currentColor"></path>
+</svg>
+</button>
+</div></>)
                     })}
                     <Modal
           isOpen={modalIsOpen}
@@ -314,7 +327,7 @@ function Booking() {
           <path fill="hotpink" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
  </svg> </button>
           
- <form onSubmit={onHandleSubmit}>
+ <form onSubmit={()=>onHandleSubmitChange(localStorage.getItem("changeId"))}>
                 
                 
  <div

@@ -37,8 +37,8 @@ function Treatment() {
     function loadMore() {
         let dynamicPage = loadPage + 2
         setLoadPage(dynamicPage)
-        if (treatments.length === allTreatments.length) {
-            setLoadButton("Visa färre")
+        if (treatments.length === allTreatments.length -1 || treatments.length === allTreatments.length -2) {
+            setLoadButton("Visa färre") 
         }
     }
 

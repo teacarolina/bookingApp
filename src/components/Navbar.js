@@ -6,6 +6,7 @@ function Navbar() {
     const JWT = localStorage.getItem("jwt");
     //behöver jag username längre?? eftersom jag tog bort admin delen med add treatment?
     const USERNAME = localStorage.getItem("username");
+    const ADMIN = localStorage.getItem("admin")
     const [jwt,
         setJwt] = useState(JWT);
     const [username,
@@ -91,7 +92,7 @@ function Navbar() {
                                 {/* lägg till så att det står admin panel istället för mina bokningar????? */}
                                 <Link
                                     to="/bokningar"
-                                    className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mina bokningar</Link>
+                                    className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">{ADMIN === "true" ? <>Adminpanel</> : <>Mina bokningar</>}</Link>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,7 @@ function Navbar() {
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Behandlingar</Link>
                 <Link
                     to="/bokningar"
-                    className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Mina bokningar</Link>
+                    className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">{ADMIN === "true" ? <>Adminpanel</> : <>Mina bokningar</>}</Link>
             </div> </div>
         </nav > </>)
             : <nav className="bg-pink-100">

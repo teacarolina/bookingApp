@@ -38,6 +38,7 @@ function Booking() {
     const USERNAME = localStorage.getItem("username")
     const USEREMAIL = localStorage.getItem("userEmail")
     const USERID = localStorage.getItem("userId")
+    const ADMIN = localStorage.getItem("admin")
 
     const [allTreatments,
         setAllTreatments] = useState([])
@@ -189,7 +190,7 @@ price: changeTreatment.price
             </div>
 
         </div>
-        {username === "admin" ? <div className="w-full h-auto md:w-9/12 mx-2 h-64">
+        {ADMIN === "true" ? <div className="w-full h-auto md:w-9/12 mx-2 h-64">
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">

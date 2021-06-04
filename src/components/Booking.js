@@ -61,6 +61,7 @@ function Booking() {
             setTreatment] = useState(initialValues)
         const [fileData,
             setFileData] = useState()
+        const [changeFileData, setChangeFileData] = useState()
         const history = useHistory()
     
         function onHandleChange(e) {
@@ -77,6 +78,10 @@ function Booking() {
         function onHandleChangeImg(e) {
             setFileData(e.target.files[0])
         }
+
+        function onHandleChangeImgChange(e) {
+          setChangeFileData(e.target.files[0])
+        }
     
         function onHandleSubmit(e) {
             e.preventDefault()
@@ -85,6 +90,10 @@ function Booking() {
                 name: treatment.name,
                 description: treatment.description,
                 price: treatment.price
+            }, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
             })
                 .then((res) => {
                     const data = new FormData()
@@ -148,8 +157,20 @@ axios
 name: changeTreatment.name,
 description: changeTreatment.description,
 price: changeTreatment.price
-}).then(history.push("/"))
-    }
+}, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  }
+}).then((res) => {
+  const data = new FormData()
+  data.append("files", changeFileData)
+  data.append("ref", "product")
+  data.append("field", "img")
+  data.append("refId", res.data.id)
+  axios.post("http://localhost:1337/upload", data)
+})
+.then(history.push("/"))
+}
 
     return ( <> <Header/> <div className="bg-gray-100"> <div className="w-full text-black bg-main-color">
         <div
@@ -294,27 +315,27 @@ price: changeTreatment.price
                
                 <div className="text-gray-700">
                     <div className="grid md:grid-cols-6 text-sm">                
-                            <div className="font-semibold">Id</div>
+                        {/*     <div className="font-semibold">Id</div>
                             <div className="font-semibold">Namn</div>
                             <div className="font-semibold">Beskrivning</div>
                             <div className="font-semibold">Pris</div>
                             <div className="font-semibold">Bild</div>  
-                            <div className="font-semibold">Action</div> 
+                            <div className="font-semibold">Action</div>  */}
                             {allTreatments.map((product) => {
-                        return (<><p>{product.id}</p>
-                        <p>{product.name}</p>
-                        <p>{product.description}</p>
-                        <p>{product.price}</p>
+                        return (<div key={product.id}><p><b>Id:</b> {product.id}</p>
+                        <p><b>{product.name}</b></p>
+                        <p><em>{product.description}</em></p>
+                        <p>{product.price} SEK</p>
                         <p>Bild</p>
-                        {/* kan man göra så här? */}
-                        <div key={product.id}>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+                        {/* kan man göra så här? key={product.id} */}
+                        <div>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
   <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
 </button>
-<button onClick={()=>deleteBooking(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:shadow-outline">
+<button onClick={()=>deleteBooking(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
   <svg className="w-5 h-5 fill-current" viewBox="0 0 50 25"><path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path><path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path><path d="M12 2h8v2h-8z" fill="currentColor"></path>
 </svg>
 </button>
-</div></>)
+</div></div>)
                     })}
                     <Modal
           isOpen={modalIsOpen}
@@ -385,6 +406,19 @@ price: changeTreatment.price
         <p>
           <input id="description" name="description" value={changeTreatment.description}
                             onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
+        </p>
+      </div>
+      {/*filedata nedan*/}
+
+      <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
+        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
+          <p>
+            <label htmlFor="file" className="bg-white text-gray-600 px-1">Bild *</label>
+          </p>
+        </div>
+        <p>
+          <input id="file" name="file"
+                            onChange={onHandleChangeImgChange} autoComplete="false" tabIndex="0" type="file" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
      {/*  <div className="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">

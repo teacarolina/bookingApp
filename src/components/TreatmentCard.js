@@ -54,6 +54,10 @@ function TreatmentCard({productId, name, price, description, image}) {
             telephone: newBooking.telephone,
             userId: userId,
             productId: productId
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
         })
             .then((res) => history.push("/bokningar"))
     }

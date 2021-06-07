@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import TreatmentInfo from './TreatmentInfo';
+import TreatmentInfo from '../treatmentpage/TreatmentInfo';
 
 function BookingCard({bookingId, name, date, telephone}) {
 

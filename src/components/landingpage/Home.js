@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from "./Footer";
+import Footer from "../footer/Footer";
 
 function Landingpage() {
     return ( <> <div className="relative bg-white overflow-hidden">

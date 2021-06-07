@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import axios from 'axios';
 import Modal from 'react-modal';
 import BookingCard from "./BookingCard";

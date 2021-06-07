@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Booking from "./Booking";
-import Treatment from "./Treatment";
-import Landingpage from "./Home";
-import Login from "./Login";
-import Register from "./Register";
+import Navbar from "./navbar/Navbar";
+import Booking from "./profilepage/Booking";
+import Treatment from "./treatmentpage/Treatment";
+import Landingpage from "./landingpage/Home";
+import Login from "./login/Login";
+import Register from "./register/Register";
 
 import {Route, BrowserRouter as Router} from "react-router-dom";
 

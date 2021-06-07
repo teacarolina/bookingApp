@@ -1,6 +1,9 @@
 {
   "name": "tea",
   "version": "0.1.0",
+  "engines": {
+    "node": "v12.19.0"
+  },
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",

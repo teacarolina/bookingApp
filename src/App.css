@@ -1,3 +1,6 @@
+@import '~stream-chat-react/dist/css/index.css';
+@import './vendor.css';
+
 .App {
   text-align: center;
 }

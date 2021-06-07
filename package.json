@@ -26,7 +26,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js && npm run run:css",
+    "run:css": "npx tailwind build tailwind.css -o vendor.css",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

@@ -290,7 +290,6 @@ price: changeTreatment.price
     </div>
   </div>
 </form>
-  {/* nästa form */}
 
 <br/>
   <div
@@ -313,29 +312,34 @@ price: changeTreatment.price
                  
                 </div>
                
-                <div className="text-gray-700">
-                    <div className="grid md:grid-cols-6 text-sm">                
-                        {/*     <div className="font-semibold">Id</div>
-                            <div className="font-semibold">Namn</div>
-                            <div className="font-semibold">Beskrivning</div>
-                            <div className="font-semibold">Pris</div>
-                            <div className="font-semibold">Bild</div>  
-                            <div className="font-semibold">Action</div>  */}
+                <div className="text-gray-700">   
+             
+                    <table className="table-auto">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Namn</th>
+      <th>Beskrivning</th>
+      <th>Pris</th>
+      <th>Bild</th>
+      <th>Action</th>
+    </tr>
+  </thead>          
+  <tbody>
                             {allTreatments.map((product) => {
-                        return (<div key={product.id}><p><b>Id:</b> {product.id}</p>
-                        <p><b>{product.name}</b></p>
-                        <p><em>{product.description}</em></p>
-                        <p>{product.price} SEK</p>
-                        <p>Bild</p>
-                        {/* kan man göra så här? key={product.id} */}
-                        <div>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
+                        return (<tr key={product.id}><td>{product.id}</td>
+                        <td>{product.name}</td>
+                        <td>{product.description}</td>
+                        <td>{product.price}SEK</td>
+                        <td>Bild</td>
+                        <td>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
   <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
 </button>
 <button onClick={()=>deleteBooking(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
   <svg className="w-5 h-5 fill-current" viewBox="0 0 50 25"><path d="M12 12h2v12h-2z" fill="currentColor"></path><path d="M18 12h2v12h-2z" fill="currentColor"></path><path d="M4 6v2h2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8h2V6zm4 22V8h16v20z" fill="currentColor"></path><path d="M12 2h8v2h-8z" fill="currentColor"></path>
 </svg>
 </button>
-</div></div>)
+</td></tr>)
                     })}
                     <Modal
           isOpen={modalIsOpen}
@@ -421,16 +425,6 @@ price: changeTreatment.price
                             onChange={onHandleChangeImgChange} autoComplete="false" tabIndex="0" type="file" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
-     {/*  <div className="border focus-within:border-blue-500 focus-within:text-blue-500 transition-all duration-500 relative rounded p-1">
-        <div className="-mt-4 absolute tracking-wider px-1 uppercase text-xs">
-          <p>
-            <label for="password" className="bg-white text-gray-600 px-1">Bild *</label>
-          </p>
-        </div>
-        <p>
-          <input id="password" autocomplete="false" tabindex="0" type="file" className="py-1 px-1 outline-none block h-full w-full"/>
-        </p>
-      </div> */}
     </div>
     <div className="border-t mt-6 pt-3">
       <button className="rounded text-gray-100 px-3 py-1 bg-pink-500 hover:shadow-inner hover:bg-pink-700 transition-all duration-300">
@@ -442,12 +436,19 @@ price: changeTreatment.price
                
                
             </form> </Modal>
+            </tbody>
+            </table>
+            
                     </div>
+
+
+
+                    
                 </div>
                 
 
                 
-            </div> </div>: 
+          </div>: 
         <div className="w-full h-auto md:w-9/12 mx-2 h-64">
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div

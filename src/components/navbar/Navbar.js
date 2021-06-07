@@ -4,13 +4,9 @@ import {Link, useHistory} from "react-router-dom";
 function Navbar() {
 
     const JWT = localStorage.getItem("jwt");
-    //behöver jag username längre?? eftersom jag tog bort admin delen med add treatment?
-    const USERNAME = localStorage.getItem("username");
     const ADMIN = localStorage.getItem("admin")
     const [jwt,
         setJwt] = useState(JWT);
-    const [username,
-        setUsername] = useState(USERNAME);
     const history = useHistory();
 
     function logout(e) {

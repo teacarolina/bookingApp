@@ -10,7 +10,6 @@ function Treatment() {
         setTreatments] = useState([]);
     const [loadPage,
         setLoadPage] = useState(2)
-        //useState(2)
     const [loadButton,
         setLoadButton] = useState("Ladda fler")
     const [allTreatments,

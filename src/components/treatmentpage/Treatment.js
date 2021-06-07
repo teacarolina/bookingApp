@@ -10,6 +10,7 @@ function Treatment() {
         setTreatments] = useState([]);
     const [loadPage,
         setLoadPage] = useState(2)
+        //useState(2)
     const [loadButton,
         setLoadButton] = useState("Ladda fler")
     const [allTreatments,
@@ -34,12 +35,8 @@ function Treatment() {
         fetchAllTreatments()
     }, [])
 
-    function loadMore() {
-        let dynamicPage = loadPage + 2
-        setLoadPage(dynamicPage)
-        if (treatments.length === allTreatments.length -1 || treatments.length === allTreatments.length -2) {
-            setLoadButton("Visa färre") 
-        }
+    const loadMore = () => {
+        setLoadPage((loadPage) => loadPage +2)
     }
 
     function showLess() {
@@ -141,7 +138,7 @@ function Treatment() {
 
     </div> </div> <br/> <br/>
         {
-        (allTreatments.length > loadPage || allTreatments.length === loadPage)
+        ( allTreatments.length > loadPage ||  allTreatments.length === loadPage)
             ? <button
                     onClick={loadMore}
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -149,7 +146,7 @@ function Treatment() {
             : <button
                     onClick={showLess}
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                    {loadButton}</button>
+                    Visa färre</button>
     } </main>
                 </div > <Footer/> </>
     )

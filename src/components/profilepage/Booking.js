@@ -5,6 +5,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import BookingCard from "./BookingCard";
 import {useHistory} from "react-router-dom";
+import ProfileModal from "./ProfileModal";
 
 function Booking() {
 
@@ -48,6 +49,8 @@ function Booking() {
         setToken] = useState(localStorage.getItem("jwt"))
     const [bookings,
         setBookings] = useState([])
+    const [user,
+        setUser] = useState([])
     const [username,
         setUsername] = useState(USERNAME)
     const [userEmail,
@@ -141,6 +144,19 @@ function Booking() {
         fetchAllTreatments()
     }, [])
 
+    useEffect(() => {
+      const fetchUser = async() => {
+          const response = await axios.get(`http://localhost:1337/users?id=${userId}`, {
+              headers: {
+                  Authorization: `Bearer ${token}`
+              }
+          })
+          setUser(response.data[0])
+      }
+
+      fetchUser()
+  }, [])
+
     function openModal(id) {
             setIsOpen(true)
             localStorage.setItem("changeId", id)
@@ -172,6 +188,17 @@ price: changeTreatment.price
 .then(history.push("/"))
 }
 
+//DEN HÄR FUNGERAR INTE?????????
+function deleteProfile() {
+  //e.preventDefault()
+  axios.delete(`http://localhost:1337/users?id=${userId}`, {
+      headers: {
+          Authorization: `Bearer ${token}`,
+      }
+  }).then(history.push("/login"))
+  //tillfällig lösning på att sidan behöver reloadas
+}
+
     return ( <> <Header/> <div className="bg-gray-100"> <div className="w-full text-black bg-main-color">
         <div
             className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
@@ -198,9 +225,12 @@ price: changeTreatment.price
                 <ul
                     className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                     <li className="flex items-center py-3">
-                        <span>Status</span>
+                    <span>Användare</span>
                         <span className="ml-auto">
-                            <span className="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span>
+                            <button className="bg-red-500 py-1 px-2 rounded text-white text-sm" onClick={deleteProfile}>Ta bort</button>
+                        </span>
+                        <span className="ml-auto">
+                            <ProfileModal/>
                         </span>
                     </li>
                     <li className="flex items-center py-3">
@@ -473,27 +503,27 @@ price: changeTreatment.price
                     <div className="grid md:grid-cols-2 text-sm">
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Förnamn</div>
-                            <div className="px-4 py-2">Jane</div>
+                            <div className="px-4 py-2">{user.firstname}</div>
                         </div>
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Efternamn</div>
-                            <div className="px-4 py-2">Doe</div>
+                            <div className="px-4 py-2">{user.lastname}</div>
                         </div>
 
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Telefonnummer</div>
-                            <div className="px-4 py-2">+11 998001001</div>
+                            <div className="px-4 py-2">{user.phonenumber}</div>
                         </div>
 
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Emailadress</div>
                             <div className="px-4 py-2">
-                                <p className="text-blue-800" href="mailto:jane@example.com">{userEmail}</p>
+                                <p className="text-blue-800" href="mailto:jane@example.com">{user.email}</p>
                             </div>
                         </div>
                         <div className="grid grid-cols-2">
                             <div className="px-4 py-2 font-semibold">Födelsedag</div>
-                            <div className="px-4 py-2">Feb 06, 1998</div>
+                            <div className="px-4 py-2">{user.birthday}</div>
                         </div>
                     </div>
                 </div>

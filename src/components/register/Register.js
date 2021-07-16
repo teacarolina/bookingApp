@@ -7,8 +7,12 @@ import Footer from "../footer/Footer";
 function Register() {
 
     const initialValues = {
+        firstname: "",
+        lastname: "",
         username: "",
         email: "",
+        phonenumber: "",
+        birthday: "",
         password: ""
     }
 
@@ -22,8 +26,12 @@ function Register() {
         e.preventDefault();
         axios
             .post('http://localhost:1337/auth/local/register', {
+            firstname: registerValues.firstname,
+            lastname: registerValues.lastname, 
             username: registerValues.username,
             email: registerValues.email,
+            phonenumber: registerValues.phonenumber,
+            birthday: registerValues.birthday,
             password: registerValues.password
         })
             .then((e) => {
@@ -64,6 +72,28 @@ function Register() {
                 </div>
                 <div>
                     <input
+                        id="firstname"
+                        name="firstname"
+                        value={registerValues.firstname}
+                        onChange={onHandleChange}
+                        type="text"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Förnamn"/>
+                </div>
+                <div>
+                    <input
+                        id="lastname"
+                        name="lastname"
+                        value={registerValues.lastname}
+                        onChange={onHandleChange}
+                        type="text"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Efternamn"/>
+                </div>
+                <div>
+                    <input
                         id="username"
                         name="username"
                         value={registerValues.username}
@@ -83,6 +113,28 @@ function Register() {
                         required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder="Emailadress"/>
+                </div>
+                <div>
+                    <input
+                        id="phonenumber"
+                        name="phonenumber"
+                        value={registerValues.phonenumber}
+                        onChange={onHandleChange}
+                        type="text"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Telefonnummer"/>
+                </div>
+                <div>
+                    <input
+                        id="birthday"
+                        name="birthday"
+                        value={registerValues.birthday}
+                        onChange={onHandleChange}
+                        type="date"
+                        required
+                        className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Födelsedag"/>
                 </div>
                 <div>
                     <input

@@ -58,7 +58,7 @@ function onHandleChange(e) {
 function onHandleSubmit(e) {
     e.preventDefault();
     axios
-        .put(`http://localhost:1337/users?id=${userId}`, {
+        .put(`http://localhost:1337/users/${userId}`, {
         firstname: changeValues.firstname,
         lastname: changeValues.lastname, 
         username: changeValues.username,
@@ -71,10 +71,9 @@ function onHandleSubmit(e) {
           Authorization: `Bearer ${token}`,
         }
       })
-        .then((e) => {
-            console.log(e.data.user)
-            /* if (e.data.user) 
-                history.push("/") */
+        .then(() => {
+                window.location.reload()
+                //history.push("/bokningar")
             })
 
 }
@@ -99,7 +98,7 @@ return ( <>
  </svg> </button>
           
           <img className="mx-auto h-16 w-auto" src="https://cdn.pixabay.com/photo/2020/11/09/12/56/eyes-5726595_1280.png" alt=" eyes "/>
- < h2 className = "mt-6 text-center text-3xl font-extrabold text-gray-900" > Ändra profil </h2><br/> <form onSubmit={onHandleSubmit} >
+ < h2 className = "mt-6 text-center text-3xl font-extrabold text-gray-900" > Ändra profil </h2><br/> <form  >
                 <div className="rounded-md shadow-sm -space-y-px">
                     <div>
                         <input
@@ -180,7 +179,7 @@ return ( <>
                     </div>
                 </div>
                 <div><br/>
-                    <button
+                    <button onClick={onHandleSubmit}
                         type="submit"
                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-400 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Bekräfta

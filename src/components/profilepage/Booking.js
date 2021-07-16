@@ -36,8 +36,7 @@ function Booking() {
     const [changeTreatment,
         setChangeTreatment] = useState(initalBookingValues)
 
-    const USERNAME = localStorage.getItem("username")
-    const USEREMAIL = localStorage.getItem("userEmail")
+ 
     const USERID = localStorage.getItem("userId")
     const ADMIN = localStorage.getItem("admin")
 
@@ -51,10 +50,7 @@ function Booking() {
         setBookings] = useState([])
     const [user,
         setUser] = useState([])
-    const [username,
-        setUsername] = useState(USERNAME)
-    const [userEmail,
-        setUserEmail] = useState(USEREMAIL)
+   
     const [userId,
         setUserId] = useState(USERID)
         const [modalIsOpen,
@@ -188,14 +184,17 @@ price: changeTreatment.price
 .then(history.push("/"))
 }
 
-//DEN HÄR FUNGERAR INTE?????????
 function deleteProfile() {
   //e.preventDefault()
-  axios.delete(`http://localhost:1337/users?id=${userId}`, {
+  localStorage.clear()
+  axios.delete(`http://localhost:1337/users/${userId}`, {
       headers: {
           Authorization: `Bearer ${token}`,
       }
   }).then(history.push("/login"))
+  window
+            .location
+            .reload()
   //tillfällig lösning på att sidan behöver reloadas
 }
 
@@ -216,7 +215,7 @@ function deleteProfile() {
         <div className="w-full md:w-3/12 md:mx-2">
 
             <div className="bg-white p-3 border-t-4 border-pink-400">
-                <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{username}</h1>
+                <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.username}</h1>
                 <h3 className="text-gray-600 font-lg text-semibold leading-6">Lorem ipsum dolor
                 </h3>
                 <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum

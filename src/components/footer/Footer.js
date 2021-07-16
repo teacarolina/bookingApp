@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function Footer() {
     return (
@@ -17,7 +18,7 @@ function Footer() {
                         <p className="opacity-60">© 2021 Stylist Studion</p>
                     </div>
                     <div className="w-full sm:w-1/5 flex flex-col space-y-4">
-                        <p className="opacity-60">Lorem ipsum</p>
+                        <Link to="/contact" className="opacity-60">Kontaktformulär</Link>
                         <p className="opacity-60">Lorem ipsum</p>
                         <p className="opacity-60">Lorem ipsum</p>
                         <p className="opacity-60">Lorem ipsum</p>

@@ -37,8 +37,7 @@ function Login() {
             .then(response => {
                 localStorage.setItem("jwt", response.data.jwt)
                 localStorage.setItem("userId", response.data.user.id)
-                localStorage.setItem("username", response.data.user.username)
-                localStorage.setItem("userEmail", response.data.user.email)
+          
                 const admin = response.data.user.admin
                 if(admin===true) {
                     localStorage.setItem("admin", admin)

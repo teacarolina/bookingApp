@@ -3,6 +3,7 @@ import axios from "axios";
 import {Link, useHistory} from "react-router-dom";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import FacebookOauth from '../facebook/FacebookOauth';
 
 function Login() {
 
@@ -72,6 +73,9 @@ function Login() {
                 Logga in
             </h2>
         </div>
+        
+        
+        
         <form className="mt-8 space-y-6" onSubmit={onHandleSubmit} method="POST">
             <input type="hidden" name="remember" value="true"/>
             <div className="rounded-md shadow-sm -space-y-px">
@@ -109,6 +113,8 @@ function Login() {
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-400 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Logga in
                 </button>
+                <FacebookOauth/>
+                
                 <Link
                     to="/register"
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Har du inget konto? Registrera dig här 😍</Link>

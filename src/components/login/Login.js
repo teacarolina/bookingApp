@@ -113,13 +113,14 @@ function Login() {
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-400 hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Logga in
                 </button>
-                <FacebookOauth/>
+                
                 
                 <Link
                     to="/register"
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Har du inget konto? Registrera dig här 😍</Link>
             </div>
         </form>
+        <FacebookOauth/>
     </div> </div>
 <Footer/> </>)
 }

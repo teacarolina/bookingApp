@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from "react-router-dom";
+import FacebookOauth from '../facebook/FacebookOauth';
 
 function Navbar() {
+
+    const [login, setLogin] = useState(true);
 
     const JWT = localStorage.getItem("jwt");
     const ADMIN = localStorage.getItem("admin")
@@ -12,6 +15,8 @@ function Navbar() {
     function logout(e) {
         e.preventDefault()
         localStorage.clear()
+        window.FB.logout()
+        setLogin(false)
         history.push("/login")
         window
             .location
@@ -92,7 +97,7 @@ function Navbar() {
                             </div>
                         </div>
                     </div>
-
+<div><FacebookOauth/></div>
                     <div
                         className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                         <button
@@ -100,6 +105,7 @@ function Navbar() {
                             className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium"
                             aria-current="page">Logga ut</button>
                     </div>
+                  
                 </div>
             </div> < div className = "sm:hidden" id = "mobile-menu" > <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link

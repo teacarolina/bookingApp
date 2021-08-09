@@ -1,10 +1,14 @@
 import React, {useState} from 'react'
+import axios from 'axios';
 import FacebookLogin from 'react-facebook-login';
 import { Card, Image } from 'react-bootstrap';
+import {useHistory} from "react-router-dom";
 
 require('dotenv').config()
 
 function FacebookOauth() {
+
+    const history = useHistory();
 
     const [login, setLogin] = useState(false);
     const [data, setData] = useState({});
@@ -12,6 +16,7 @@ function FacebookOauth() {
 
     const APP_ID = process.env.REACT_APP_FACEBOOK_APP_ID;
 
+    //behöver ladda om sidan en gång för att logga ut knappen/fb bilden ska dyka upp 
     const responseFacebook = (response) => {
         console.log(response);
         setData(response);
@@ -25,6 +30,12 @@ function FacebookOauth() {
       setLogin(false);
     }
   }
+
+  /*axios
+        .post('http://localhost:1337/auth/local/register', {
+        firstname: response.name
+        //lastname: registerValues.lastname, 
+    }) */
 
   //FUNKAR DEN HÄR??? SKA JAG HA KVAR DEN??
   /*function LogOutFacebook() {
@@ -42,7 +53,7 @@ function FacebookOauth() {
               appId={APP_ID}
               autoLoad={true}
               fields="name,email,picture"
-              scope="public_profile,user_friends"
+              scope="public_profile,email,user_friends"
               callback={responseFacebook}
               icon="fa-facebook" />
           }

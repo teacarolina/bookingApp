@@ -53,8 +53,6 @@ function onHandleChange(e) {
     })
 }
 
-
-//FUNGERAR INTE????????
 function onHandleSubmit(e) {
     e.preventDefault();
     axios
@@ -73,7 +71,6 @@ function onHandleSubmit(e) {
       })
         .then(() => {
                 window.location.reload()
-                //history.push("/bokningar")
             })
 
 }

@@ -18,7 +18,7 @@ function Footer() {
                         <p className="opacity-60">© 2021 Stylist Studion</p>
                     </div>
                     <div className="w-full sm:w-1/5 flex flex-col space-y-4">
-                        <Link to="/contact" className="opacity-60">Kontaktformulär</Link>
+                        <Link to="/contact" className="opacity-90">Kontaktformulär</Link>
                         <p className="opacity-60">Lorem ipsum</p>
                         <p className="opacity-60">Lorem ipsum</p>
                         <p className="opacity-60">Lorem ipsum</p>
@@ -31,10 +31,10 @@ function Footer() {
                     </div>
                     <div className="w-full sm:w-1/5 pt-6 flex items-end mb-1">
                         <div className="flex flex-row space-x-4">
-                            <i className="fab fa-facebook-f"></i>
+                           {/*  <i className="fab fa-facebook-f"></i>
                             <i className="fab fa-twitter"></i>
                             <i className="fab fa-instagram"></i>
-                            <i className="fab fa-google"></i>
+                            <i className="fab fa-google"></i> */}
                         </div>
                     </div>
                 </div>

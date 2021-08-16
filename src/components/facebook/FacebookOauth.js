@@ -3,7 +3,7 @@ import FacebookLogin from 'react-facebook-login';
 import { Image } from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
 
-require('dotenv').config()
+require('dotenv').config();
 
 function FacebookOauth() {
 
@@ -73,8 +73,7 @@ function FacebookOauth() {
               callback={responseFacebook}
               icon="fa-facebook" />
           }
-          {/** bilden syns fortfarande på inloggningssidan?? försök få bort 
-          */} 
+         
           {login &&
             <Image src={picture} roundedCircle />
           }

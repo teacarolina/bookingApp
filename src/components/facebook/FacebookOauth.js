@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import React, {useState} from 'react';
 import FacebookLogin from 'react-facebook-login';
-import { Card, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
 
 require('dotenv').config()
@@ -29,25 +28,42 @@ function FacebookOauth() {
     } else {
       setLogin(false);
     }
+    history.push("/")
   }
 
+ /*  om vi vill lägga till fbanvändare?
+ const responseFacebook = (response) => {
+    console.log(response);
+    setData(response);
+    setPicture(response.picture.data.url);
+    localStorage.setItem("jwt", response.accessToken);
+    // function onHandleSubmit(e){
+    // e.preventDefault();
+    axios
+    .post('http://localhost:1337/auth/local/register', {
+    
+    email: "hej@hej.som",
+    password: response.id,
+    username: response.name,
+    name: response.name
+    
+    })
+    .then ( response => {
+    localStorage.setItem("userInfo", response.id);
+    localStorage.setItem("userAdmin", response.admin);
+    
+    })
+ */
   /*axios
         .post('http://localhost:1337/auth/local/register', {
         firstname: response.name
         //lastname: registerValues.lastname, 
     }) */
-
-  //FUNKAR DEN HÄR??? SKA JAG HA KVAR DEN??
-  /*function LogOutFacebook() {
-    window.FB.logout()
-    window.location.reload()
-  }*/
-
+    
     return (
         <>
        <div className="container"> 
-        <Card >
-        <Card.Header>
+       
           {!login &&
             <FacebookLogin
               appId={APP_ID}
@@ -57,28 +73,16 @@ function FacebookOauth() {
               callback={responseFacebook}
               icon="fa-facebook" />
           }
-          {/** bilden syns fortfarande på inloggningssidan?? försök få bort och dubbelkolla
-           * om man kan ändra knappen för facebook login
+          {/** bilden syns fortfarande på inloggningssidan?? försök få bort 
           */} 
           {login &&
             <Image src={picture} roundedCircle />
           }
-        </Card.Header>
-        {login &&
-          <Card.Body>
-          {/*   <Card.Title>{data.name}</Card.Title> */}
-           {/*  <Card.Text>
-              {data.email}
-            </Card.Text> */}
-          </Card.Body>
-        }
-        </Card>
+    
         </div>
         
         </>
     )
 }
-
-// <button onClick={LogOutFacebook}>Logga ut facebook</button>
 
 export default FacebookOauth;

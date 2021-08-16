@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import emailjs from 'emailjs-com';
 
-require('dotenv').config()
+require('dotenv').config();
 
 function ContactForm() {
 
@@ -94,4 +94,4 @@ function ContactForm() {
     )
 }
 
-export default ContactForm
+export default ContactForm;

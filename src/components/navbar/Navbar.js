@@ -90,16 +90,15 @@ function Navbar() {
                                 <Link
                                     to="/behandlingar"
                                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Behandlingar</Link>
-                                {/* lägg till så att det står admin panel istället för mina bokningar????? */}
                                 <Link
                                     to="/bokningar"
                                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">{ADMIN === "true" ? <>Adminpanel</> : <>Mina bokningar</>}</Link>
                             </div>
                         </div>
                     </div>
-<div><FacebookOauth/></div>
                     <div
                         className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <FacebookOauth/>
                         <button
                             onClick={logout}
                             className="bg-gray-900 text-pink-100 px-3 py-2 rounded-md text-sm font-medium"

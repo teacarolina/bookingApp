@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { Image } from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
+import axios from "axios";
 
 require('dotenv').config();
 
@@ -23,6 +24,13 @@ function FacebookOauth() {
         //save token here from facebook user 
         console.log(response.accessToken)
         localStorage.setItem("jwt", response.accessToken)
+        axios
+    .post('http://localhost:1337/open-auths', {
+    email: response.email,
+    name: response.name,
+    userID: response.userID
+    
+    })
     if (response.accessToken) {
       setLogin(true);
     } else {

@@ -341,7 +341,7 @@ function deleteProfile() {
                  
                 </div>
                
-                <div className="text-gray-700">   
+                <div className="text-gray-700 flex-wrap">   
              
                     <table className="table-auto">
   <thead>

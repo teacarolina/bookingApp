@@ -24,13 +24,23 @@ function FacebookOauth() {
         //save token here from facebook user 
         console.log(response.accessToken)
         localStorage.setItem("jwt", response.accessToken)
+
+
+        //testar bara här ta bort eventuellt - kolla med emilia 
+        const openAuthData = axios.get(`http://localhost:1337/open-auths?userID=${response.userID}`).then(function(openAuthData){
+          const testing = openAuthData.data
+          console.log(testing)
+        
+        if(!testing[0]){
         axios
     .post('http://localhost:1337/open-auths', {
     email: response.email,
     name: response.name,
     userID: response.userID
     
-    })
+    })}
+  }
+  )
     if (response.accessToken) {
       setLogin(true);
     } else {

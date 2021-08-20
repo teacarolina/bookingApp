@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Gruppinlämning 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Vad är en CMS, headless cms, Firebase/serverless/backend as a service?
+CMS (Content Management System) används för att hantera webinnehåll. Wordpress är ett exempel på ett CMS som har en databas, UI och API endpoint. 
+CMS har färdiga UI som man kan styla och man använder templates för att visa innehållet för användaren som lagras i en databas. CMS kräver även vanligtvis att man använder deras standardramverk. 
 
-## Available Scripts
+Headless CMS får data från en API och kan sedan visas upp på önskat sätt. Det här ger mer flexibilitet vid design då man inte är begränsad av templates och mallar, utan kan designa hur man vill. Det ger möjligheten att göra sin egen UI och man behöver inte längre använda den som kommer från CMS. Det här ger även utvecklare möjligheten att använda vilket ramverk dem vill. Man kommunicerar här med hjälp av API via dem olika systemen. 
+Firebase är en backend applikation som är skapad av Google. Det är ett serverless ramverk som automatiskt kör backend kod för att trigga de olika Firebase funktionerna samt HTTPS requests. Utvecklare kan använda den för att utveckla mobil och webapplikationer. Den erbjuder många olika funktioner som t.ex. Google Analytics och Firebase Authentication. 
 
-In the project directory, you can run:
+Serverless är målbaserat och låter utvecklare köra applikationer utan att behöva hantera servrarna själv. Det finns fortfarande servrar i serverless men de är hanterade av leverantören och de ser till att infrastrukturen fungerar och skalar upp den vid behov. Serverless appar körs endast vid behov och när dem kallas vilket gör dem kostnadseffektiva.
 
-### `npm start`
+Backend as a service (BaaS) låter utvecklare fokusera på frontend så man behöver inte bygga eller underhålla backend, då man outsourcar backend. BaaS leverantörer erbjuder färdigskriven software för allt från det som sker på servern, user authentication och cloud storage. Man använder sig av API och SDK för att koppla upp sig mot BaaS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Skillnaden mellan cms och backend as a service?
+Skillnaden är att med Backend as a service (Baas) är att man behöver koppla sig mot databasen vid API och SDK medan med CMS så sköts kopplingen till databasen automatiskt. Båda låter utvecklaren fokusera på frontend och enkelt ändra innehåll. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Vilket sammanhang ska man använda headless cms och vanlig cms?  
+Innehåll som skapas via CMS fungerar endast för dem plattformar det är utformat för medan Headless CMS ger mer flexibilitet och kan användas för flera plattformar.
+Traditionellt CMS är mycket enklare att komma igång med och arbeta i och kan vara bra att använda för företag där man inte har ett utvecklarteam. Även för små företag och enklare hemsidor. CMS hjälper alltså användare att skapa, underhålla och ändra innehåll för hemsidan utan att behöva vara tekniskt kunnig. För med Headless CMS måste man få ihop alla pusselbitar för att systemet ska fungera. Största skillnaden är att man inte har en front end att kombinera med databasens data utan istället behöver man bygga en hemsida och använda API för att visa innehållet för användare.
+Fördelarna med Headless CMS är att det är enklare att hantera innehåll för flera kanaler, snabbare laddningstid, snabbare editering och även en mer säkerhet till din hemsida. Det är även mindre troligt med en attack mot ditt Headless CMS då backend är separat från frontend. 
+Fördelarna med vanlig CMS är enkla mallar och mindre tid och kostnad för att implementera.

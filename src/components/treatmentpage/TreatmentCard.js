@@ -18,6 +18,8 @@ function TreatmentCard({productId, name, price, description, image}) {
 
     const USERID = localStorage.getItem("userId")
     const USERNAME = localStorage.getItem("username")
+    const USERFB = localStorage.getItem("fbId")
+    console.log(USERFB)
 
     const [modalIsOpen,
         setIsOpen] = React.useState(false);
@@ -25,6 +27,7 @@ function TreatmentCard({productId, name, price, description, image}) {
         setUserId] = useState(USERID)
     const [username,
         setUsername] = useState(USERNAME)
+    const [userFb, setUserFb] = useState(USERFB)
     const [token,
         setToken] = useState(localStorage.getItem("jwt"))
 
@@ -47,6 +50,7 @@ function TreatmentCard({productId, name, price, description, image}) {
 
     function onHandleSubmit(e) {
         e.preventDefault()
+        if(USERID!=="facebook"){
         axios
             .post("http://localhost:1337/bookings", {
             name: username,
@@ -60,6 +64,16 @@ function TreatmentCard({productId, name, price, description, image}) {
             }
         })
             .then((res) => history.push("/bokningar"))
+    }else {
+        axios
+            .post("http://localhost:1337/bookings-open-auths", {
+            date: newBooking.date,
+            telephone: newBooking.telephone,
+            open_auth: USERFB,
+            product: productId
+        })
+            //.then((res) => history.push("/bokningar"))
+    }
     }
 
     function openModal() {

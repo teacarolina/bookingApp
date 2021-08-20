@@ -479,6 +479,7 @@ function deleteProfile() {
                 
           </div>: 
         <div className="w-full h-auto md:w-9/12 mx-2 h-64">
+          {userId != "facebook" ?
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -527,7 +528,7 @@ function deleteProfile() {
                     </div>
                 </div>
 
-            </div>
+            </div> : <div className="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">Inloggad via Facebook</div> }
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -563,7 +564,7 @@ function deleteProfile() {
             </div> 
         </div> }
     </div> </div> 
-</div > <Footer/> </>
+</div >  <Footer/> </>
     )
 }
 

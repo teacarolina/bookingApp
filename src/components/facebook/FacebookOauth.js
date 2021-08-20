@@ -24,7 +24,7 @@ function FacebookOauth() {
         //save token here from facebook user 
         console.log(response.accessToken)
         localStorage.setItem("jwt", response.accessToken)
-
+        localStorage.setItem("userId", "facebook")
 
         //testar bara här ta bort eventuellt - kolla med emilia 
         const openAuthData = axios.get(`http://localhost:1337/open-auths?userID=${response.userID}`).then(function(openAuthData){

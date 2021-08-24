@@ -39,9 +39,12 @@ function Booking() {
  
     const USERID = localStorage.getItem("userId")
     const ADMIN = localStorage.getItem("admin")
+    const USERFB = localStorage.getItem("fbId")
 
     const [allTreatments,
         setAllTreatments] = useState([])
+
+    const [message, setMessage] = useState("")
 
     //is assigned value but never used
     const [token,
@@ -50,7 +53,8 @@ function Booking() {
         setBookings] = useState([])
     const [user,
         setUser] = useState([])
-   
+        //TESTAR HÄR 
+   const [userFb, setUserFb] = useState(USERFB)
     const [userId,
         setUserId] = useState(USERID)
         const [modalIsOpen,
@@ -119,6 +123,7 @@ function Booking() {
 
     //has missing dependencies, either include them or remove the dependency array
     useEffect(() => {
+      if(userId!=="facebook"){
         const fetchBookings = async() => {
             const response = await axios.get(`http://localhost:1337/bookings?userId.id=${userId}`, {
                 headers: {
@@ -126,9 +131,23 @@ function Booking() {
                 }
             })
             setBookings(response.data)
+            if(!response.data[0]) {
+              setMessage("Du har inga bokningar")
+            }
+        }
+
+        fetchBookings()}else {
+          const fetchBookings = async() => {
+            const response = await axios.get(`http://localhost:1337/bookings-open-auths?userId.id=${userFb}`)
+            setBookings(response.data)
+            console.log(response.data[0])
+            if(!response.data[0]) {
+              setMessage("Du har inga bokningar")
+            }
         }
 
         fetchBookings()
+        }
     }, [])
 
     useEffect(() => {
@@ -141,6 +160,7 @@ function Booking() {
     }, [])
 
     useEffect(() => {
+      if(userId!=="facebook") {
       const fetchUser = async() => {
           const response = await axios.get(`http://localhost:1337/users?id=${userId}`, {
               headers: {
@@ -150,7 +170,7 @@ function Booking() {
           setUser(response.data[0])
       }
 
-      fetchUser()
+      fetchUser()}
   }, [])
 
     function openModal(id) {
@@ -215,7 +235,8 @@ function deleteProfile() {
         <div className="w-full md:w-3/12 md:mx-2">
 
             <div className="bg-white p-3 border-t-4 border-pink-400">
-                <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.username}</h1>
+            {userId!=="facebook" ?<h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.username}</h1>:
+            <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Inloggad via Facebook</h1>}
                 <h3 className="text-gray-600 font-lg text-semibold leading-6">Lorem ipsum dolor
                 </h3>
                 <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum
@@ -223,7 +244,7 @@ function deleteProfile() {
                     sequi illum qui unde aspernatur non deserunt</p>
                 <ul
                     className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                    <li className="flex items-center py-3">
+                    {userId!=="facebook" ? <li className="flex items-center py-3">
                     <span>Användare</span>
                         <span className="ml-auto">
                             <button className="bg-red-500 py-1 px-2 rounded text-white text-sm" onClick={deleteProfile}>Ta bort</button>
@@ -231,7 +252,7 @@ function deleteProfile() {
                         <span className="ml-auto">
                             <ProfileModal/>
                         </span>
-                    </li>
+                    </li> : <></> }
                     <li className="flex items-center py-3">
                         <span>Medlem sedan</span>
                         <span className="ml-auto">Nov 07, 2016</span>
@@ -479,7 +500,7 @@ function deleteProfile() {
                 
           </div>: 
         <div className="w-full h-auto md:w-9/12 mx-2 h-64">
-          {userId != "facebook" ?
+          {userId !== "facebook" ?
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -528,7 +549,7 @@ function deleteProfile() {
                     </div>
                 </div>
 
-            </div> : <div className="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">Inloggad via Facebook</div> }
+            </div> : <></> }
             <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div
                     className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -548,6 +569,7 @@ function deleteProfile() {
                     </span>
                     <span className="tracking-wide">Mina bokningar</span>
                 </div>
+                <div className="flex items-center space-x-2 font-semibold text-gray-400 leading-8">{message}</div>
                 <div
                     className="flex items-center flex-wrap space-x-2 font-semibold text-gray-900 leading-8">
 

@@ -27,7 +27,9 @@ function TreatmentCard({productId, name, price, description, image}) {
         setUserId] = useState(USERID)
     const [username,
         setUsername] = useState(USERNAME)
+        //ska jag referera till userFb istället för USERFB? för annars används ju inte den här
     const [userFb, setUserFb] = useState(USERFB)
+    console.log(userFb)
     const [token,
         setToken] = useState(localStorage.getItem("jwt"))
 
@@ -69,10 +71,10 @@ function TreatmentCard({productId, name, price, description, image}) {
             .post("http://localhost:1337/bookings-open-auths", {
             date: newBooking.date,
             telephone: newBooking.telephone,
-            open_auth: USERFB,
-            product: productId
+            userId: userFb,
+            productId: productId
         })
-            //.then((res) => history.push("/bokningar"))
+            .then((res) => history.push("/bokningar"))
     }
     }
 

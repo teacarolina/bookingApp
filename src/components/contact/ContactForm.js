@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import emailjs from 'emailjs-com';
@@ -7,12 +7,16 @@ require('dotenv').config();
 
 function ContactForm() {
 
+    const [message, setMessage] = useState("")
+
     function sendEmail(e) {
         e.preventDefault();
                             //service id                              //template id                       //user id 
         emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, e.target, process.env.REACT_APP_USER_ID)
           .then((result) => {
               console.log(result.text);
+              e.target.reset();
+              setMessage("Ditt meddelande har skickats 📧")
           }, (error) => {
               console.log(error.text);
           });
@@ -78,7 +82,7 @@ function ContactForm() {
                             <label htmlFor="message" className="hidden">Subject</label>
                             <input type="text" name="message" id="message" placeholder="Message" className="w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none"/>
                         </div>
-
+                        <div className="flex items-center mt-4 text-gray-600 dark:text-gray-400">{message}</div>
                         <button type="submit" className="md:w-32 bg-pink-600 hover:bg-pink-dark text-white font-bold py-3 px-6 rounded-lg mt-3 hover:bg-pink-500 transition ease-in-out duration-300">
                             Skicka
                         </button>

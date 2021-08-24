@@ -4,6 +4,8 @@ import TreatmentInfo from '../treatmentpage/TreatmentInfo';
 
 function BookingCard({bookingId, name, date, telephone}) {
 
+    const userId = localStorage.getItem("userId")
+
     const [treatments, setTreatments] = useState([])
     const [token, setToken] = useState(localStorage.getItem("jwt"))
 
@@ -18,6 +20,7 @@ function BookingCard({bookingId, name, date, telephone}) {
 
 function onHandleSubmit(e) {
     e.preventDefault()
+    if(userId!=="facebook"){
     axios.delete(`http://localhost:1337/bookings/${bookingId}`, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -26,7 +29,11 @@ function onHandleSubmit(e) {
     .location
     .reload())
     //tillfällig lösning på att sidan behöver reloadas
-  } 
+}else{
+    axios.delete(`http://localhost:1337/bookings-open-auths/${bookingId}`).then( (res)=> window
+    .location
+    .reload())
+}} 
 
     return ( <> <div
         className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-max">

@@ -18,21 +18,17 @@ function FacebookOauth() {
 
     //behöver ladda om sidan en gång för att logga ut knappen/fb bilden ska dyka upp 
     const responseFacebook = (response) => {
-        console.log(response);
         setData(response);
         setPicture(response.picture.data.url);
         //save token here from facebook user 
-        console.log(response.accessToken)
-        localStorage.setItem("jwt", response.accessToken)
-        localStorage.setItem("userId", "facebook")
-        localStorage.setItem("userFb", response.userID)
+        localStorage.setItem("jwt", response.accessToken);
+        localStorage.setItem("userId", "facebook");
+        localStorage.setItem("userFb", response.userID);
 
-        //testar bara här ta bort eventuellt - kolla med emilia 
+        //fråga emilia måste jag ha const? 
         const openAuthData = axios.get(`http://localhost:1337/open-auths?userID=${response.userID}`).then(function(openAuthData){
-          const testing = openAuthData.data
-          localStorage.setItem("fbId", openAuthData.data[0].id)
-          console.log(testing)
-          console.log(openAuthData.data[0].id)
+          const testing = openAuthData.data;
+          localStorage.setItem("fbId", openAuthData.data[0].id);
         
         if(!testing[0]){
         axios
@@ -40,7 +36,6 @@ function FacebookOauth() {
     email: response.email,
     name: response.name,
     userID: response.userID
-    
     })}
   }
   )
@@ -51,35 +46,6 @@ function FacebookOauth() {
     }
     history.push("/")
   }
-
- /*  om vi vill lägga till fbanvändare?
- const responseFacebook = (response) => {
-    console.log(response);
-    setData(response);
-    setPicture(response.picture.data.url);
-    localStorage.setItem("jwt", response.accessToken);
-    // function onHandleSubmit(e){
-    // e.preventDefault();
-    axios
-    .post('http://localhost:1337/auth/local/register', {
-    
-    email: "hej@hej.som",
-    password: response.id,
-    username: response.name,
-    name: response.name
-    
-    })
-    .then ( response => {
-    localStorage.setItem("userInfo", response.id);
-    localStorage.setItem("userAdmin", response.admin);
-    
-    })
- */
-  /*axios
-        .post('http://localhost:1337/auth/local/register', {
-        firstname: response.name
-        //lastname: registerValues.lastname, 
-    }) */
     
     return (
         <>

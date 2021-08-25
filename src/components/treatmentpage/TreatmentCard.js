@@ -28,6 +28,7 @@ function TreatmentCard({productId, name, price, description, image}) {
     const [username,
         setUsername] = useState(USERNAME)
         //ska jag referera till userFb istället för USERFB? för annars används ju inte den här
+        //ska jag ha use state fast jag inte använder setUserFb??
     const [userFb, setUserFb] = useState(USERFB)
     console.log(userFb)
     const [token,
@@ -89,6 +90,7 @@ function TreatmentCard({productId, name, price, description, image}) {
     function closeModal() {
         setIsOpen(false);
     }
+    
     return ( <> <div className="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
         <div className="flex items-end justify-end h-56 w-full bg-cover" style={{
             backgroundImage: `url(http://localhost:1337${image.formats.small.url})`

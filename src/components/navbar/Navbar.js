@@ -7,20 +7,20 @@ function Navbar() {
     const [login, setLogin] = useState(true);
 
     const JWT = localStorage.getItem("jwt");
-    const ADMIN = localStorage.getItem("admin")
+    const ADMIN = localStorage.getItem("admin");
     const [jwt,
         setJwt] = useState(JWT);
     const history = useHistory();
 
     function logout(e) {
-        e.preventDefault()
-        localStorage.clear()
-        window.FB.logout()
-        setLogin(false)
-        history.push("/login")
+        e.preventDefault();
+        localStorage.clear();
+        window.FB.logout();
+        setLogin(false);
+        history.push("/login");
         window
             .location
-            .reload()
+            .reload();
         //tillfällig lösning på att sidan behöver reloadas
     }
 

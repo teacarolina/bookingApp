@@ -6,8 +6,8 @@ function BookingCard({bookingId, name, date, telephone}) {
 
     const userId = localStorage.getItem("userId")
 
-    const [treatments, setTreatments] = useState([])
-    const [token, setToken] = useState(localStorage.getItem("jwt"))
+    const [treatments, setTreatments] = useState([]);
+    const [token, setToken] = useState(localStorage.getItem("jwt"));
 
     useEffect(()=> {
         const fetchTreatments = async()=> {

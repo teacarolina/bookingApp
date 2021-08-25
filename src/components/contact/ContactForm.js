@@ -7,7 +7,7 @@ require('dotenv').config();
 
 function ContactForm() {
 
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("");
 
     function sendEmail(e) {
         e.preventDefault();
@@ -16,7 +16,7 @@ function ContactForm() {
           .then((result) => {
               console.log(result.text);
               e.target.reset();
-              setMessage("Ditt meddelande har skickats 📧")
+              setMessage("Ditt meddelande har skickats 📧");
           }, (error) => {
               console.log(error.text);
           });

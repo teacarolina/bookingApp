@@ -34,38 +34,37 @@ function Booking() {
     }
 
     const [changeTreatment,
-        setChangeTreatment] = useState(initalBookingValues)
+        setChangeTreatment] = useState(initalBookingValues);
 
  
-    const USERID = localStorage.getItem("userId")
-    const ADMIN = localStorage.getItem("admin")
-    const USERFB = localStorage.getItem("fbId")
+    const USERID = localStorage.getItem("userId");
+    const ADMIN = localStorage.getItem("admin");
+    const USERFB = localStorage.getItem("fbId");
 
     const [allTreatments,
-        setAllTreatments] = useState([])
+        setAllTreatments] = useState([]);
 
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState("");
 
     //is assigned value but never used
     const [token,
-        setToken] = useState(localStorage.getItem("jwt"))
+        setToken] = useState(localStorage.getItem("jwt"));
     const [bookings,
-        setBookings] = useState([])
+        setBookings] = useState([]);
     const [user,
-        setUser] = useState([])
-        //TESTAR HÄR 
-   const [userFb, setUserFb] = useState(USERFB)
+        setUser] = useState([]);
+   const [userFb, setUserFb] = useState(USERFB);
     const [userId,
-        setUserId] = useState(USERID)
+        setUserId] = useState(USERID);
         const [modalIsOpen,
             setIsOpen] = React.useState(false);
     
         const [treatment,
-            setTreatment] = useState(initialValues)
+            setTreatment] = useState(initialValues);
         const [fileData,
-            setFileData] = useState()
-        const [changeFileData, setChangeFileData] = useState()
-        const history = useHistory()
+            setFileData] = useState();
+        const [changeFileData, setChangeFileData] = useState();
+        const history = useHistory();
     
         function onHandleChange(e) {
             setTreatment({
@@ -79,11 +78,11 @@ function Booking() {
         }
     
         function onHandleChangeImg(e) {
-            setFileData(e.target.files[0])
+            setFileData(e.target.files[0]);
         }
 
         function onHandleChangeImgChange(e) {
-          setChangeFileData(e.target.files[0])
+          setChangeFileData(e.target.files[0]);
         }
     
         function onHandleSubmit(e) {
@@ -140,7 +139,6 @@ function Booking() {
           const fetchBookings = async() => {
             const response = await axios.get(`http://localhost:1337/bookings-open-auths?userId.id=${userFb}`)
             setBookings(response.data)
-            console.log(response.data[0])
             if(!response.data[0]) {
               setMessage("Du har inga bokningar")
             }

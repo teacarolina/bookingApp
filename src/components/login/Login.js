@@ -3,7 +3,7 @@ import axios from "axios";
 import {Link, useHistory} from "react-router-dom";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import FacebookOauth from '../facebook/FacebookOauth';
+//import FacebookOauth from '../facebook/FacebookOauth';
 
 function Login() {
 
@@ -117,7 +117,7 @@ function Login() {
                     className="text-gray-900 hover:bg-pink-50 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Har du inget konto? Registrera dig här 😍</Link>
             </div>
         </form>
-        <FacebookOauth/>
+        {/*<FacebookOauth/>*/}
     </div> </div>
 <Footer/> </>)
 }

@@ -235,11 +235,11 @@ function deleteProfile() {
             <div className="bg-white p-3 border-t-4 border-pink-400">
             {userId!=="facebook" ?<h1 className="text-gray-900 font-bold text-xl leading-8 my-1">{user.username}</h1>:
             <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">Inloggad via Facebook</h1>}
-                <h3 className="text-gray-600 font-lg text-semibold leading-6">Lorem ipsum dolor
+                <h3 className="text-gray-600 font-lg text-semibold leading-6">✨
                 </h3>
-                <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum
-                    dolor sit amet consectetur adipisicing elit. Reprehenderit, eligendi dolorum
-                    sequi illum qui unde aspernatur non deserunt</p>
+                <p className="text-sm text-gray-500 hover:text-gray-600 leading-6">På Mina Sidor hittar du
+                information om dina kommande bokningar samt kan se din kontaktinformation. Här kan du även avboka
+                bokningar samt ändra och ta bort din användare.</p>
                 <ul
                     className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                     {userId!=="facebook" ? <li className="flex items-center py-3">
@@ -253,7 +253,7 @@ function deleteProfile() {
                     </li> : <></> }
                     <li className="flex items-center py-3">
                         <span>Medlem sedan</span>
-                        <span className="ml-auto">Nov 07, 2016</span>
+                        <span className="ml-auto">{user.created_at}</span>
                     </li>
                 </ul>
             </div>
@@ -359,28 +359,29 @@ function deleteProfile() {
                     <span className="tracking-wide">Ta bort/Ändra behandling</span>
                  
                 </div>
-               
-                <div className="text-gray-700 flex-wrap">   
+               ¨
+               {/**börjar här */}
+                <div className="text-gray-700 flex items-center justify-center container">   
              
-                    <table className="table-auto">
+                    <table className="w-full flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
   <thead>
-    <tr>
-      <th>Id</th>
-      <th>Namn</th>
-      <th>Beskrivning</th>
-      <th>Pris</th>
-      <th>Bild</th>
-      <th>Action</th>
+    <tr className="bg-teal-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+      <th className="p-3 text-left">Id</th>
+      <th className="p-3 text-left">Namn</th>
+      <th className="p-3 text-left">Beskrivning</th>
+      <th className="p-3 text-left">Pris</th>
+      <th className="p-3 text-left">Bild</th>
+      <th className="p-3 text-left">Action</th>
     </tr>
   </thead>          
-  <tbody>
+  <tbody className="flex-1 sm:flex-none">
                             {allTreatments.map((product) => {
-                        return (<tr key={product.id}><td>{product.id}</td>
-                        <td>{product.name}</td>
-                        <td>{product.description}</td>
-                        <td>{product.price}SEK</td>
-                        <td>Bild</td>
-                        <td>                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
+                        return (<tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0" key={product.id}><td className="p-3 font-bold text-left">{product.id}</td>
+                        <td className="p-3 text-left">{product.name}</td>
+                        <td className="p-3 text-left">{product.description}</td>
+                        <td className="p-3 text-left">{product.price}SEK</td>
+                        <td className="p-3 text-left">Bild</td>
+                        <td className="p-3 text-left">                      <button onClick={()=>openModal(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">
   <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>
 </button>
 <button onClick={()=>deleteBooking(product.id)} className="inline-flex items-center justify-center w-6 h-6 mr-2 text-gray-700 transition-colors duration-150 bg-white rounded-full focus:outline-none">

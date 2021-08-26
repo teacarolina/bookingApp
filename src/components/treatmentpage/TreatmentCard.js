@@ -19,6 +19,7 @@ function TreatmentCard({productId, name, price, description, image}) {
     const USERID = localStorage.getItem("userId")
     const USERNAME = localStorage.getItem("username")
     const USERFB = localStorage.getItem("fbId")
+    const ADMIN = localStorage.getItem("admin");
     console.log(USERFB)
 
     const [modalIsOpen,
@@ -96,11 +97,12 @@ function TreatmentCard({productId, name, price, description, image}) {
             backgroundImage: `url(http://localhost:1337${image.formats.small.url})`
         }} 
         >
+            {!ADMIN ? 
             <button
                 onClick={openModal}
                 className="p-2 mx-5 -mb-4 bg-pink-400 text-white text-sm uppercase font-medium rounded hover:bg-pink-600 focus:outline-none focus:bg-pink-500">
                 Boka
-            </button>
+            </button> : <></>}
         </div> < div className = "px-5 py-3" > <h3 className="text-gray-700 uppercase">{name}</h3> < h5 className = "text-gray-500 mt-2" > {
         description
     } </h5>

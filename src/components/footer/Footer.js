@@ -19,14 +19,14 @@ function Footer() {
                     </div>
                     <div className="w-full sm:w-1/5 flex flex-col space-y-4">
                         
-                        <Link to="/contact" className="opacity-90">Kontaktformulär</Link>
-                        <p className="opacity-60">Lorem ipsum</p>
-                        <p className="opacity-60">Lorem ipsum</p>
-                        <p className="opacity-60">Lorem ipsum</p>
+                        
+                        <p className="opacity-60">Naglar</p>
+                        <p className="opacity-60">Browlift</p>
+                        <p className="opacity-60">Lashlift & Fransförlängning</p>
                     </div>
                     <div className="w-full sm:w-1/5 flex flex-col space-y-4">
-                    <p className="opacity-60">Lorem ipsum</p>
-                        <p className="opacity-60">Lorem ipsum</p>
+                    <Link to="/contact" className="opacity-90">Kontaktformulär</Link>
+                        
                         
                     </div>
                     <div className="w-full sm:w-1/5 pt-6 flex items-end mb-1">

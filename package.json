@@ -1,9 +1,6 @@
 {
   "name": "tea",
   "version": "0.1.0",
-  "engines": {
-    "node": "v12.19.0"
-  },
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
@@ -31,7 +28,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "set HTTPS=true&&craco start",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"

@@ -1,4 +1,4 @@
-/* import React, {useState} from 'react';
+import React, {useState} from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { Image } from 'react-bootstrap';
 import {useHistory} from "react-router-dom";
@@ -71,4 +71,4 @@ function FacebookOauth() {
     )
 }
 
-export default FacebookOauth; */
+export default FacebookOauth;

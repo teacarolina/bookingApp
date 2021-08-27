@@ -64,6 +64,11 @@ function Booking() {
         const [fileData,
             setFileData] = useState();
         const [changeFileData, setChangeFileData] = useState();
+
+        const [productName, setProductName] = useState("");
+        const [productPrice, setProductPrice] = useState("");
+        const [productDescription, setProductDescription] = useState("");
+
         const history = useHistory();
     
         function onHandleChange(e) {
@@ -175,6 +180,15 @@ function Booking() {
     function openModal(id) {
             setIsOpen(true);
             localStorage.setItem("changeId", id);
+            axios.get(`http://localhost:1337/products/${id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            }).then( (res)=> {
+            setProductName(res.data.name);
+            setProductPrice(res.data.price);
+            setProductDescription(res.data.description);
+            })
     }
 
     function closeModal() {
@@ -437,7 +451,7 @@ function deleteProfile() {
         </div>
         <p>
           <input id="name" name="name" value={changeTreatment.name}
-                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} placeholder={productName} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
       <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
@@ -448,7 +462,7 @@ function deleteProfile() {
         </div>
         <p>
           <input id="price" name="price" value={changeTreatment.price}
-                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} placeholder={productPrice} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
       <div className="border focus-within:border-pink-500 focus-within:text-pink-500 transition-all duration-500 relative rounded p-1">
@@ -459,7 +473,7 @@ function deleteProfile() {
         </div>
         <p>
           <input id="description" name="description" value={changeTreatment.description}
-                            onChange={onHandleChangeTreatment} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
+                            onChange={onHandleChangeTreatment} placeholder={productDescription} autoComplete="false" tabIndex="0" type="text" className="py-1 px-1 outline-none block h-full w-full"/>
         </p>
       </div>
       {/*filedata nedan*/}

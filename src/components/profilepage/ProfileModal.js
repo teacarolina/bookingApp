@@ -36,9 +36,28 @@ function ProfileModal() {
                 
                 const [userId,
                     setUserId] = useState(USERID);
+                    
+            const [firstname, setFirstname] = useState("");
+            const [lastname, setLastname] = useState("");
+            const [username, setUsername] = useState("");
+            const [email, setEmail] = useState("");
+            const [phonenumber, setPhonenumber] = useState("");
+            const [birthday, setBirthday] = useState("");
 
 function openModal() {
         setIsOpen(true);
+        axios.get(`http://localhost:1337/users/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            }).then( (res)=> {
+                setFirstname(res.data.firstname)
+                    setLastname(res.data.lastname)
+                    setUsername(res.data.username)
+                    setEmail(res.data.email)
+                    setPhonenumber(res.data.phonenumber)
+                    setBirthday(res.data.birthday)
+            })
 }
 
 function closeModal() {
@@ -97,6 +116,9 @@ return ( <>
  < h2 className = "mt-6 text-center text-3xl font-extrabold text-gray-900" > Ändra profil </h2><br/> <form  >
                 <div className="rounded-md shadow-sm -space-y-px">
                     <div>
+                    <p>
+            <label htmlFor="firstname" className="bg-white text-gray-600 px-1">Förnamn *</label>
+          </p>
                         <input
                             id="firstname"
                             name="firstname"
@@ -105,9 +127,12 @@ return ( <>
                             onChange={onHandleChange} 
                             required
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                            placeholder="Förnamn"/>
+                            placeholder={firstname}/>
                     </div>
                     <div>
+                    <p>
+            <label htmlFor="lastname" className="bg-white text-gray-600 px-1">Efternamn *</label>
+          </p>
                         <input
                             id="lastname"
                             name="lastname"
@@ -116,9 +141,12 @@ return ( <>
                             onChange={onHandleChange} 
                             required
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                            placeholder="Efternamn"/>
+                            placeholder={lastname}/>
                     </div>
                     <div>
+                    <p>
+            <label htmlFor="username" className="bg-white text-gray-600 px-1">Användarnamn *</label>
+          </p>
                         <input
                             id="username"
                             name="username"
@@ -127,9 +155,12 @@ return ( <>
                             onChange={onHandleChange} 
                             required
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                            placeholder="Användarnamn"/>
+                            placeholder={username}/>
                     </div>
                     <div>
+                    <p>
+            <label htmlFor="email" className="bg-white text-gray-600 px-1">Emailadress *</label>
+          </p>
                         <input
                             id="email"
                             name="email"
@@ -138,9 +169,12 @@ return ( <>
                             onChange={onHandleChange} 
                             required
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                            placeholder="Emailadress"/>
+                            placeholder={email}/>
                     </div>
                     <div>
+                    <p>
+            <label htmlFor="phonenumber" className="bg-white text-gray-600 px-1">Telefonnummer *</label>
+          </p>
                         <input
                             id="phonenumber"
                             name="phonenumber"
@@ -149,9 +183,12 @@ return ( <>
                             onChange={onHandleChange} 
                             required
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                            placeholder="Telefonnummer"/>
+                            placeholder={phonenumber}/>
                     </div>
                     <div>
+                    <p>
+            <label htmlFor="birthday" className="bg-white text-gray-600 px-1">Födelsedag *</label>
+          </p>
                         <input
                             id="birthday"
                             name="birthday"
@@ -162,7 +199,9 @@ return ( <>
                             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="Födelsedag"/>
                     </div>
-                    <div>
+                    <div><p>
+            <label htmlFor="password" className="bg-white text-gray-600 px-1">Lösenord *</label>
+          </p>
                         <input
                             id="password"
                             name="password"

@@ -20,7 +20,6 @@ function TreatmentCard({productId, name, price, description, image}) {
     const USERNAME = localStorage.getItem("username");
     const USERFB = localStorage.getItem("fbId");
     const ADMIN = localStorage.getItem("admin");
-    console.log(USERFB)
 
     const [modalIsOpen,
         setIsOpen] = React.useState(false);

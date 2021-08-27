@@ -16,26 +16,24 @@ const customStyles = {
 
 function TreatmentCard({productId, name, price, description, image}) {
 
-    const USERID = localStorage.getItem("userId")
-    const USERNAME = localStorage.getItem("username")
-    const USERFB = localStorage.getItem("fbId")
+    const USERID = localStorage.getItem("userId");
+    const USERNAME = localStorage.getItem("username");
+    const USERFB = localStorage.getItem("fbId");
     const ADMIN = localStorage.getItem("admin");
     console.log(USERFB)
 
     const [modalIsOpen,
         setIsOpen] = React.useState(false);
     const [userId,
-        setUserId] = useState(USERID)
+        setUserId] = useState(USERID);
     const [username,
-        setUsername] = useState(USERNAME)
-        //ska jag referera till userFb istället för USERFB? för annars används ju inte den här
-        //ska jag ha use state fast jag inte använder setUserFb??
-    const [userFb, setUserFb] = useState(USERFB)
-    console.log(userFb)
-    const [token,
-        setToken] = useState(localStorage.getItem("jwt"))
+        setUsername] = useState(USERNAME);
+    const [userFb, setUserFb] = useState(USERFB);
 
-    const history = useHistory()
+    const [token,
+        setToken] = useState(localStorage.getItem("jwt"));
+
+    const history = useHistory();
 
     const initalValues = {
         date: "",
@@ -43,7 +41,7 @@ function TreatmentCard({productId, name, price, description, image}) {
     }
 
     const [newBooking,
-        setNewBooking] = useState(initalValues)
+        setNewBooking] = useState(initalValues);
 
     function onHandleChange(e) {
         setNewBooking({
@@ -53,7 +51,7 @@ function TreatmentCard({productId, name, price, description, image}) {
     }
 
     function onHandleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         if(USERID!=="facebook"){
         axios
             .post("http://localhost:1337/bookings", {
@@ -67,7 +65,7 @@ function TreatmentCard({productId, name, price, description, image}) {
                 Authorization: `Bearer ${token}`,
             }
         })
-            .then((res) => history.push("/bokningar"))
+            .then(() => history.push("/bokningar"));
     }else {
         axios
             .post("http://localhost:1337/bookings-open-auths", {
@@ -76,15 +74,15 @@ function TreatmentCard({productId, name, price, description, image}) {
             userId: userFb,
             productId: productId
         })
-            .then((res) => history.push("/bokningar"))
+            .then((res) => history.push("/bokningar"));
     }
     }
 
     function openModal() {
         if (token) {
-            setIsOpen(true)
+            setIsOpen(true);
         } else {
-            history.push("/login")
+            history.push("/login");
         }
     }
 

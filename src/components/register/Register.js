@@ -36,10 +36,10 @@ function Register() {
         })
             .then((e) => {
                 if (e.data.user) 
-                    history.push("/login")
+                    history.push("/login");
                 })
             .catch((err) => {
-                setError(err.response.data.message[0].messages[0].message)
+                setError(err.response.data.message[0].messages[0].message);
             })
 
     }

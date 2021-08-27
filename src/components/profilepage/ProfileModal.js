@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import axios from "axios";
-import {useHistory} from "react-router-dom";
 import Modal from 'react-modal';
 
 const customStyles = {
@@ -18,7 +17,7 @@ function ProfileModal() {
 
     const [modalIsOpen,
         setIsOpen] = React.useState(false);
-        const USERID = localStorage.getItem("userId")
+        const USERID = localStorage.getItem("userId");
         const initialValues = {
             firstname: "",
             lastname: "",
@@ -31,15 +30,15 @@ function ProfileModal() {
 
         const [changeValues,
             setChangeValues] = useState(initialValues);
-            const history = useHistory();
+           
             const [token,
-                setToken] = useState(localStorage.getItem("jwt"))
+                setToken] = useState(localStorage.getItem("jwt"));
                 
                 const [userId,
-                    setUserId] = useState(USERID)
+                    setUserId] = useState(USERID);
 
 function openModal() {
-        setIsOpen(true)
+        setIsOpen(true);
 }
 
 function closeModal() {
@@ -70,7 +69,7 @@ function onHandleSubmit(e) {
         }
       })
         .then(() => {
-                window.location.reload()
+                window.location.reload();
             })
 
 }

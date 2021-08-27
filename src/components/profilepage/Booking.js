@@ -70,11 +70,11 @@ function Booking() {
             setTreatment({
                 ...treatment,
                 [e.target.name]: e.target.value
-            })
+            });
         }
 
         function onHandleChangeTreatment(e) {
-            setChangeTreatment({...changeTreatment, [e.target.name]:e.target.value})
+            setChangeTreatment({...changeTreatment, [e.target.name]:e.target.value});
         }
     
         function onHandleChangeImg(e) {
@@ -114,9 +114,9 @@ function Booking() {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            }).then( (res)=> window
+            }).then( ()=> window
             .location
-            .reload())
+            .reload());
             //tillfällig lösning på att sidan behöver reloadas
           }
 
@@ -131,30 +131,30 @@ function Booking() {
             })
             setBookings(response.data)
             if(!response.data[0]) {
-              setMessage("Du har inga bokningar")
+              setMessage("Du har inga bokningar");
             }
         }
 
         fetchBookings()}else {
           const fetchBookings = async() => {
             const response = await axios.get(`http://localhost:1337/bookings-open-auths?userId.id=${userFb}`)
-            setBookings(response.data)
+            setBookings(response.data);
             if(!response.data[0]) {
-              setMessage("Du har inga bokningar")
+              setMessage("Du har inga bokningar");
             }
         }
 
-        fetchBookings()
+        fetchBookings();
         }
     }, [])
 
     useEffect(() => {
         const fetchAllTreatments = async() => {
-            const responseAll = await axios.get(`http://localhost:1337/products`)
-            setAllTreatments(responseAll.data)
+            const responseAll = await axios.get(`http://localhost:1337/products`);
+            setAllTreatments(responseAll.data);
         }
 
-        fetchAllTreatments()
+        fetchAllTreatments();
     }, [])
 
     useEffect(() => {
@@ -165,15 +165,16 @@ function Booking() {
                   Authorization: `Bearer ${token}`
               }
           })
-          setUser(response.data[0])
+          setUser(response.data[0]);
       }
 
-      fetchUser()}
+      fetchUser();
+    }
   }, [])
 
     function openModal(id) {
-            setIsOpen(true)
-            localStorage.setItem("changeId", id)
+            setIsOpen(true);
+            localStorage.setItem("changeId", id);
     }
 
     function closeModal() {
@@ -192,14 +193,14 @@ price: changeTreatment.price
     Authorization: `Bearer ${token}`,
   }
 }).then((res) => {
-  const data = new FormData()
-  data.append("files", changeFileData)
-  data.append("ref", "product")
-  data.append("field", "img")
-  data.append("refId", res.data.id)
-  axios.post("http://localhost:1337/upload", data)
+  const data = new FormData();
+  data.append("files", changeFileData);
+  data.append("ref", "product");
+  data.append("field", "img");
+  data.append("refId", res.data.id);
+  axios.post("http://localhost:1337/upload", data);
 })
-.then(history.push("/"))
+.then(history.push("/"));
 }
 
 function deleteProfile() {
@@ -209,10 +210,10 @@ function deleteProfile() {
       headers: {
           Authorization: `Bearer ${token}`,
       }
-  }).then(history.push("/login"))
+  }).then(history.push("/login"));
   window
             .location
-            .reload()
+            .reload();
   //tillfällig lösning på att sidan behöver reloadas
 }
 

@@ -25,12 +25,11 @@ function FacebookOauth() {
         localStorage.setItem("userId", "facebook");
         localStorage.setItem("userFb", response.userID);
 
-        //fråga emilia måste jag ha const? 
-        const openAuthData = axios.get(`http://localhost:1337/open-auths?userID=${response.userID}`).then(function(openAuthData){
-          const testing = openAuthData.data;
+          axios.get(`http://localhost:1337/open-auths?userID=${response.userID}`).then(function(openAuthData){
+          const openAuthUser = openAuthData.data;
           localStorage.setItem("fbId", openAuthData.data[0].id);
         
-        if(!testing[0]){
+        if(!openAuthUser[0]){
         axios
     .post('http://localhost:1337/open-auths', {
     email: response.email,
@@ -44,7 +43,7 @@ function FacebookOauth() {
     } else {
       setLogin(false);
     }
-    history.push("/")
+    history.push("/");
   }
     
     return (

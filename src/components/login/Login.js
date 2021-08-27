@@ -45,14 +45,14 @@ function Login() {
                     localStorage.setItem("admin", admin);
                 }
                 
-                history.push("/")
+                history.push("/");
                 window
                     .location
-                    .reload()
+                    .reload();
                 //tillfällig lösning på att sidan behöver reloadas
             })
             .catch((err) => {
-                setError(err.response.data.message[0].messages[0].message)
+                setError(err.response.data.message[0].messages[0].message);
             })
     }
 

@@ -9,38 +9,38 @@ function Treatment() {
     const [treatments,
         setTreatments] = useState([]);
     const [loadPage,
-        setLoadPage] = useState(2)
+        setLoadPage] = useState(2);
     const [loadButton,
-        setLoadButton] = useState("Ladda fler")
+        setLoadButton] = useState("Ladda fler");
     const [allTreatments,
-        setAllTreatments] = useState([])
+        setAllTreatments] = useState([]);
 
     useEffect(() => {
         const fetchTreatments = async() => {
             const response = await axios.get(`http://localhost:1337/products?_limit=${loadPage}`)
-            setTreatments(response.data)
+            setTreatments(response.data);
         }
         
-        fetchTreatments()
+        fetchTreatments();
     }, [loadPage])
 
     //to fetch all treatments in the db to set length of array to correct number
     useEffect(() => {
         const fetchAllTreatments = async() => {
-            const responseAll = await axios.get(`http://localhost:1337/products`)
-            setAllTreatments(responseAll.data)
+            const responseAll = await axios.get(`http://localhost:1337/products`);
+            setAllTreatments(responseAll.data);
         }
 
-        fetchAllTreatments()
+        fetchAllTreatments();
     }, [])
 
     const loadMore = () => {
-        setLoadPage((loadPage) => loadPage +2)
+        setLoadPage((loadPage) => loadPage +2);
     }
 
     function showLess() {
-        setLoadPage(2)
-        setLoadButton("Ladda fler")
+        setLoadPage(2);
+        setLoadButton("Ladda fler");
     }
 
     return ( <> <Header/> <div className="bg-gray-100"> <div className="w-full text-black bg-main-color">

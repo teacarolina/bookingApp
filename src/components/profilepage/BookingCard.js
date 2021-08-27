@@ -4,7 +4,7 @@ import TreatmentInfo from '../treatmentpage/TreatmentInfo';
 
 function BookingCard({bookingId, name, date, telephone}) {
 
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId");
 
     const [treatments, setTreatments] = useState([]);
     const [token, setToken] = useState(localStorage.getItem("jwt"));
@@ -12,27 +12,27 @@ function BookingCard({bookingId, name, date, telephone}) {
     useEffect(()=> {
         const fetchTreatments = async()=> {
         const response = await axios.get(`http://localhost:1337/products?bookingId=${bookingId}`)
-        setTreatments(response.data)
+        setTreatments(response.data);
       }
 
-      fetchTreatments()
+      fetchTreatments();
     }, [])
 
 function onHandleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     if(userId!=="facebook"){
     axios.delete(`http://localhost:1337/bookings/${bookingId}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         }
-    }).then( (res)=> window
+    }).then( ()=> window
     .location
-    .reload())
+    .reload());
     //tillfällig lösning på att sidan behöver reloadas
 }else{
-    axios.delete(`http://localhost:1337/bookings-open-auths/${bookingId}`).then( (res)=> window
+    axios.delete(`http://localhost:1337/bookings-open-auths/${bookingId}`).then( ()=> window
     .location
-    .reload())
+    .reload());
 }} 
 
     return ( <> <div
